@@ -1,0 +1,238 @@
+﻿@font-face {
+    font-family: 'Regular';
+    src: url('fonts/Lato-Regular.eot') format('embedded-opentype'), url('fonts/Lato-Regular.ttf') format('truetype'), url('fonts/Lato-Regular.woff') format('woff'), url('fonts/Lato-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.body {
+    padding-bottom: 40px;
+    color: #7f7f7f;
+    font-family: Regular;
+}
+
+.navSection {
+    border-bottom: 1px solid #e5e5e5;
+    width: 100%;
+}
+
+.navWrapper {
+    margin-top: 8px;
+}
+
+.dropdown-toggle.account {
+    width: 135px;
+}
+
+.Account_info {
+    border-bottom: 1px solid #e5e5e5;
+    align-items: center;
+    height: 150px;
+    margin-bottom: 20px;
+    margin-left: 15px;
+}
+
+.Account_info_wrapper {
+    width: 85%;
+    padding-left: 15%;
+    min-width: inherit;
+    bottom: auto;
+    padding-top: 40px;
+}
+
+.Community_Header {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.thumbnail:hover {
+    cursor: pointer;
+}
+
+.Massdrops {
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.user_avatar {
+    border-radius: 3px;
+}
+
+.navbar-default.adjusted {
+    height: 66px;
+    width: 70%;
+    left: 15%;
+    right: 15%;
+    border-color: white;
+    margin-bottom: 0px;
+}
+
+.navbar-brand.adjusted {
+    color: black;
+    margin-right: 1.125rem;
+    text-align: center;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+    background-image: url(../../Content/Images/watermark2.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    width: 150px;
+    height: 40px;
+    margin-top: 10px;
+}
+
+.glyphicon.adjusted {
+    padding-right: 10px;
+}
+
+.dropdown-toggle.outline {
+    border: 1.5px solid #bfbfbf;
+    border-radius: 3.5px;
+}
+
+.dropdown.adjusted {
+    margin-top: 5px;
+    width: 160px;
+    height: 40px;
+}
+
+.btn.blacked {
+    color: #7f7f7f !important;
+}
+
+.navbar-form.adjusted {
+    margin-top: 11px;
+}
+
+.LikeButton {
+    position: absolute;
+    margin-top: 150px;
+    margin-left: 92px;
+    float: left;
+}
+
+.mComment{
+    height: 21%;
+    border-bottom: 1px solid #e5e5e5;
+
+}
+
+.dropdown-toggle.nopadding {
+    margin-top: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+    height: 35px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 25px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.Likes{
+    float: left;
+    position: absolute;
+    margin-left: 155px;
+    margin-top: 146px;
+}
+
+.Title_Wrapper {
+    width: 50%;
+    margin-left: 15%;
+}
+
+.Title-section-wrapper {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.Title {
+    font-weight: 900;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.Join-Drop {
+    margin-left: 70%;
+    width: 30%;
+    height: 30%;
+}
+
+.Price {
+    font-weight: 900;
+    text-align: center;
+}
+
+.SubPrice {
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.ProductImage {
+    width: 60%;
+    /*position: absolute;*/
+    float: left;
+}
+
+.ProductDescription {
+    width: 48%;
+    position: absolute;
+    margin-top: 15%;
+    font-size: 20px;
+}
+
+.Shipping {
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+    text-align: center;
+}
+
+.Image {
+    margin-left: 20px;
+    margin-top: 20px;
+    float: left;
+}
+
+.UserInfo {
+    margin-left: 20px;
+    margin-top: 20px;
+    float: left;
+}
+
+.Commenttext {
+    float: left;
+    position: absolute;
+    margin-top: 75px;
+    margin-left: 112px;
+}
+
+.Content-wrapper {
+    float: left;
+    position: absolute;
+    width: 52%;
+    height: 100%;
+    border: 1px solid #e5e5e5;
+    max-height: 860px;
+    overflow-y: scroll;
+}
+
+.TimeLeft {
+    padding-top: 10px;
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+.btn.adjusted {
+    background-color: #88c100;
+    width: 100%;
+    line-height: 3;
+}
+
+.Page-Wrapper {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}

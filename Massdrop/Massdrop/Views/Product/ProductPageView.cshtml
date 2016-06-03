@@ -1,0 +1,261 @@
+﻿
+@{
+    ViewBag.Title = "ProductPageView";
+    Layout = "~/Views/Shared/_ProductLayout.cshtml";
+}
+
+@{
+    var ProductName = ViewData["ProductPageName"];
+    var CategoryName = ViewData["ProductPageCategory"];
+}
+
+<div class="Page-Wrapper">
+    <div class="Title-section-wrapper">
+        <div class="Title_Wrapper">
+            <h1 class="Title">@ProductName - @CategoryName</h1>
+        </div>
+        <ul class="nav nav-tabs" role="tablist" style="margin-left: 86%">
+            <li role="presentation" class="active"><a href="#description" aria-controls="description" role="tab" data-toggle="tab">Description</a></li>
+            <li role="presentation"><a href="#discussion" aria-controls="discussion" role="tab" data-toggle="tab">Discussion</a></li>
+        </ul>
+
+    </div>
+    <div class="description-wrapper">
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="description">
+                <div class="Product-Intro">
+                    <img src="https://massdrop-s3.imgix.net/product-images/infinity-ergodox/MD-15095_20160131210426_b0e95de93a65612a.jpg?auto=format&fm=jpg&fit=crop&w=965&h=292&dpr=1&mark=https://massdrop-s3.imgix.net/img_site/best_of_drop_banner_2x.png&markfit=clip&markalign=top,left&markalpha=100&markh=60&markpad=0" class="ProductImage" />
+
+
+                    <div class="ProductDescription">
+                        <h2>Exclusive Import, Now in Blue</h2>
+                        <p>
+                            specialty stationery store in Tokyo, Bungbox has taken the writing community by storm since going international in 2015. Working directly with the owner, we’ve arranged an exclusive import of three of its blue inks, all of which stand out for their excellent sheen and shading properties. Along with the 4B Blue-Black and Hatsukoi “First Love” Sapphire colors, you’ll get the limited-release Fujiyama Blue.
+                            The first time the owner of Bungbox laid eyes on the Parker Penman Sapphire ink, she became enamored with the vibrant blue color and knew she wanted to try to recreate it. Fittingly, she named her finished product Hatsukoi, which means “first love.” The 4B Blue-Black is a deeper, darker hue, highly saturated with a great deal of depth. Finally, the highly sought-after Fujiyama Blue delivers a lovely muted teal shade inspired by the iconic Mount Fuji.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div role="tabpanel" class="tab-pane" id="discussion">
+                <div class="Content-wrapper">
+                    <div class="mComment">
+                        <div class="Image">
+                            <img src="http://placehold.it/72x72">
+                        </div>
+                        <div class="UserInfo">
+                            <h4 style="font-weight: 900">UserName</h4>
+                            <h5>Replying to UserName</h5>
+                        </div>
+                        <div class="Commenttext">
+                            <h4>COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMENNT CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCS</h4>
+                        </div>
+                        <div class="LikeButton">
+                            <a class="btn btn-sm btn-secondary blacked">
+                               <span class="glyphicon glyphicon-thumbs-up" style="font-size: 15px;"></span>
+                            </a>
+                        </div>
+                        <div class="Likes">
+                            <h5>Likes: 0</h5>
+                        </div>
+                    </div>
+                    <div class="mComment">
+                        <div class="Image">
+                            <img src="http://placehold.it/72x72">
+                        </div>
+                        <div class="UserInfo">
+                            <h4 style="font-weight: 900">UserName</h4>
+                            <h5>Replying to UserName</h5>
+                        </div>
+                        <div class="Commenttext">
+                            <h4>COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMENNT CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCS</h4>
+                        </div>
+                        <div class="LikeButton">
+                            <a class="btn btn-sm btn-secondary blacked">
+                                <span class="glyphicon glyphicon-thumbs-up" style="font-size: 15px;"></span>
+                            </a>
+                        </div>
+                        <div class="Likes">
+                            <h5>Likes: 0</h5>
+                        </div>
+                    </div>
+                    <div class="mComment">
+                        <div class="Image">
+                            <img src="http://placehold.it/72x72">
+                        </div>
+                        <div class="UserInfo">
+                            <h4 style="font-weight: 900">UserName</h4>
+                            <h5>Replying to UserName</h5>
+                        </div>
+                        <div class="Commenttext">
+                            <h4>COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMENNT CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCS</h4>
+                        </div>
+                        <div class="LikeButton">
+                            <a class="btn btn-sm btn-secondary blacked">
+                                <span class="glyphicon glyphicon-thumbs-up" style="font-size: 15px;"></span>
+                            </a>
+                        </div>
+                        <div class="Likes">
+                            <h5>Likes: 0</h5>
+                        </div>
+                    </div>
+                    <div class="mComment">
+                        <div class="Image">
+                            <img src="http://placehold.it/72x72">
+                        </div>
+                        <div class="UserInfo">
+                            <h4 style="font-weight: 900">UserName</h4>
+                            <h5>Replying to UserName</h5>
+                        </div>
+                        <div class="Commenttext">
+                            <h4>COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMENNT CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCS</h4>
+                        </div>
+                        <div class="LikeButton">
+                            <a class="btn btn-sm btn-secondary blacked">
+                                <span class="glyphicon glyphicon-thumbs-up" style="font-size: 15px;"></span>
+                            </a>
+                        </div>
+                        <div class="Likes">
+                            <h5>Likes: 0</h5>
+                        </div>
+                    </div>
+                    <div class="mComment">
+                        <div class="Image">
+                            <img src="http://placehold.it/72x72">
+                        </div>
+                        <div class="UserInfo">
+                            <h4 style="font-weight: 900">UserName</h4>
+                            <h5>Replying to UserName</h5>
+                        </div>
+                        <div class="Commenttext">
+                            <h4>COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMENNT CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCS</h4>
+                        </div>
+                        <div class="LikeButton">
+                            <a class="btn btn-sm btn-secondary blacked">
+                                <span class="glyphicon glyphicon-thumbs-up" style="font-size: 15px;"></span>
+                            </a>
+                        </div>
+                        <div class="Likes">
+                            <h5>Likes: 0</h5>
+                        </div>
+                    </div>
+                    <div class="mComment">
+                        <div class="Image">
+                            <img src="http://placehold.it/72x72">
+                        </div>
+                        <div class="UserInfo">
+                            <h4 style="font-weight: 900">UserName</h4>
+                            <h5>Replying to UserName</h5>
+                        </div>
+                        <div class="Commenttext">
+                            <h4>COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMENNT CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCS</h4>
+                        </div>
+                        <div class="LikeButton">
+                            <a class="btn btn-sm btn-secondary blacked">
+                                <span class="glyphicon glyphicon-thumbs-up" style="font-size: 15px;"></span>
+                            </a>
+                        </div>
+                        <div class="Likes">
+                            <h5>Likes: 0</h5>
+                        </div>
+                    </div>
+                    <div class="mComment">
+                        <div class="Image">
+                            <img src="http://placehold.it/72x72">
+                        </div>
+                        <div class="UserInfo">
+                            <h4 style="font-weight: 900">UserName</h4>
+                            <h5>Replying to UserName</h5>
+                        </div>
+                        <div class="Commenttext">
+                            <h4>COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMENNT CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCS</h4>
+                        </div>
+                        <div class="LikeButton">
+                            <a class="btn btn-sm btn-secondary blacked">
+                                <span class="glyphicon glyphicon-thumbs-up" style="font-size: 15px;"></span>
+                            </a>
+                        </div>
+                        <div class="Likes">
+                            <h5>Likes: 0</h5>
+                        </div>
+                    </div>
+                    <div class="mComment">
+                        <div class="Image">
+                            <img src="http://placehold.it/72x72">
+                        </div>
+                        <div class="UserInfo">
+                            <h4 style="font-weight: 900">UserName</h4>
+                            <h5>Replying to UserName</h5>
+                        </div>
+                        <div class="Commenttext">
+                            <h4>COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMENNT CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCS</h4>
+                        </div>
+                        <div class="LikeButton">
+                            <a class="btn btn-sm btn-secondary blacked">
+                                <span class="glyphicon glyphicon-thumbs-up" style="font-size: 15px;"></span>
+                            </a>
+                        </div>
+                        <div class="Likes">
+                            <h5>Likes: 0</h5>
+                        </div>
+                    </div>
+                    <div class="mComment">
+                        <div class="Image">
+                            <img src="http://placehold.it/72x72">
+                        </div>
+                        <div class="UserInfo">
+                            <h4 style="font-weight: 900">UserName</h4>
+                            <h5>Replying to UserName</h5>
+                        </div>
+                        <div class="Commenttext">
+                            <h4>COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMENNT CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCS</h4>
+                        </div>
+                        <div class="LikeButton">
+                            <a class="btn btn-sm btn-secondary blacked">
+                                <span class="glyphicon glyphicon-thumbs-up" style="font-size: 15px;"></span>
+                            </a>
+                        </div>
+                        <div class="Likes">
+                            <h5>Likes: 0</h5>
+                        </div>
+                    </div>
+                    <div class="mComment">
+                        <div class="Image">
+                            <img src="http://placehold.it/72x72">
+                        </div>
+                        <div class="UserInfo">
+                            <h4 style="font-weight: 900">UserName</h4>
+                            <h5>Replying to UserName</h5>
+                        </div>
+                        <div class="Commenttext">
+                            <h4>COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMMENT COMENNT CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCS</h4>
+                        </div>
+                        <div class="LikeButton">
+                            <a class="btn btn-sm btn-secondary blacked">
+                                <span class="glyphicon glyphicon-thumbs-up" style="font-size: 15px;"></span>
+                            </a>
+                        </div>
+                        <div class="Likes">
+                            <h5>Likes: 0</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="Join-Drop">
+            <div class="Price-Wrapper">
+                <h1 class="Price">$199.99</h1>
+                <h3 class="SubPrice">$499.99 MSRP</h3>
+                <section class="Shipping">
+                    <h4>$25.00 SHIPPING TO: NETHERLANDS</h4>
+                </section>
+                <section class="TimeLeft">
+                    <h4>1 Day Left</h4>
+                </section>
+                <button type="button" class="btn btn-success adjusted">JOIN DROP</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,71 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Massdrop</title>
+
+    <link href="../Content/ProductPage.css" rel="stylesheet" type="text/css" />
+    <link href="../Content/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/UserPage.css" rel="stylesheet" />
+</head>
+<body>
+    <div style="width: 1920px; height: 960px; margin: 0 auto;">
+        <section class="navSection">
+            <div class="navWrapper">
+                <nav class="navbar navbar-default adjusted">
+                    <a class="navbar-brand adjusted" href="#"></a>
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown adjusted">
+                            <a href="#" class="dropdown-toggle nopadding outline" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Communities <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/Product/Index?id=Everyday Carry" id="Everday"><span class="glyphicon glyphicon-tree-deciduous pull-right"></span>Everyday Carry</a></li>
+                                <li><a href="/Product/Index?id=Men's Style"><span class="glyphicon glyphicon-sunglasses pull-right"></span>Men's Style</a></li>
+                                <li><a href="/Product/Index?id=Mechanical Keyboards"><span class="glyphicon glyphicon-modal-window pull-right"></span>Mech Keys</a></li>
+                                <li><a href="/Product/Index?id=Technology"><span class="glyphicon glyphicon-phone pull-right"></span>Technology</a></li>
+                                <li><a href="/Product/Index?id=Writing"><span class="glyphicon glyphicon-pencil pull-right"></span>Writing</a></li>
+                                <li><a href="/Product/Index?id=Photography"><span class="glyphicon glyphicon-camera pull-right"></span>Photography</a></li>
+                                <li><a href="/Product/Index?id=Audiophile"><span class="glyphicon glyphicon-headphones pull-right"></span>Audiophile</a></li>
+                                <li><a href="/Product/Index?id=Auto"><span class="glyphicon glyphicon-wrench pull-right"></span>Auto</a></li>
+                                <li><a href="/Product/Index?id=Hobby"><span class="glyphicon glyphicon-scissors pull-right"></span>Hobby</a></li>
+                                <li><a href="/Product/Index?id=Quilting"><span class="glyphicon glyphicon-briefcase pull-right"></span>Quilting</a></li>
+                                <li><a href="/Product/Index?id=Pro Audio"><span class="glyphicon glyphicon-cd pull-right"></span>Pro Audio</a></li>
+                                <li><a href="/Product/Index?id=Ultralight"><span class="glyphicon glyphicon-paperclip pull-right"></span>Ultralight</a></li>
+                                <li><a href="/Product/Index?id=RC Cars"><span class="glyphicon glyphicon-flag pull-right"></span>RC Cars</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown adjusted">
+                            <a href="#" class="dropdown-toggle nopadding outline account" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><span class="glyphicon glyphicon-user pull-right"></span>Profile</a></li>
+                                <li><a href="#"><span class="glyphicon glyphicon-transfer pull-right"></span>Transactions</a></li>
+                                <li><a href="../User/Index"><span class="glyphicon glyphicon-cog pull-right"></span>Settings</a></li>
+                                <li><a href="#"><span class="glyphicon glyphicon-log-out pull-right"></span>Log Out</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-right adjusted" role="search">
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="button"> <span class="glyphicon glyphicon-search"></span></button>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Search" style="width: 210px">
+                        </div>
+                    </form>
+                </nav>
+            </div>
+        </section>
+
+
+        <div id="test" class="container body-content" style="width: 100%;">
+            @RenderBody()
+        </div>
+        </div>
+
+        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+﻿@using Massdrop.Controllers;
+
+
+@{
+    ViewBag.Title = "Sign up or login";
+}
+
+@{ 
+    var Massdrops = (List<Massdrop.Models.Massdrop>)ViewData["MassdropList"];
+}
+
+<section class="category">  
+        <div class="ultralightcategory" id="testButton">
+        <a href="../Product/Index?id=Ultralight" class="s-ultralight">Ultralight</a>
+    </div>
+    <div class="audophilecategory">
+        <a href="../Product/Index?id=Audiophile" class="s-audiophile">Audiophile</a>
+    </div>
+    <div class="mechanicalcategory">
+        <a href="../Product/Index?id=Mechanical" class="s-mechanical">Mechanical Keyboards</a>
+    </div>
+    <div class="proaudiocategory">
+        <a href="../Product/Index?id=Pro-Audio" class="s-proaudio">Pro Audio</a>
+    </div>
+    <div class="hobbyshopcategory">
+        <a href="../Product/Index?id=Hobbyshop" class="s-hobbyshop">Hobby Shop</a>
+    </div>
+    <div class="stylecategory">
+        <a href="../Product/Index?id=Men's Style" class="s-style">Men's Style</a>
+    </div>
+    <div class="everydaycategory">
+        <a href="../Product/Index?id=Everyday Carry" class="s-everyday">Everyday Carry</a>
+    </div>
+    <div class="quiltingcategory">
+        <a href="../Product/Index?id=Quilting" class="s-quilting">Quilting</a>
+    </div>
+    <div class="techcategory">
+        <a href="../Product/Index?id=Tech" class="s-tech">Tech</a>
+    </div>
+    <div class="writingcategory">
+        <a href="../Product/Index?id=Writing" class="s-writing">Writing</a>
+    </div>
+    <div class="photocategory">
+        <a href="../Product/Index?id=Photography" class="s-photo">Photography</a>
+    </div>
+    <div class="rccategory">
+        <a href="../Product/Index?id=RC Cars" class="s-rc">RC Cars</a>
+    </div>
+    <div class="autocategory">
+        <a href="../Product/Index?id=Auto" class="s-auto">Auto</a>
+    </div>
+</section>
+

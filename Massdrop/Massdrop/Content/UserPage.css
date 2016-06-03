@@ -1,0 +1,112 @@
+﻿@font-face {
+    font-family: 'Regular';
+    src: url('fonts/Lato-Regular.eot') format('embedded-opentype'),
+         url('fonts/Lato-Regular.ttf') format('truetype'),
+         url('fonts/Lato-Regular.woff') format('woff'),
+         url('fonts/Lato-Regular.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+}
+
+.body {
+    padding-bottom: 40px;
+    color: #7f7f7f;
+    padding-top: 51px;
+    font-family: Regular;
+}
+
+.sideText{
+    color: #00aeda;
+    font-size: 16px;
+}
+
+.panel-wrapper{
+    width: 80%;
+}
+
+.panel-wrapper.adjusted{
+    width: 80%;
+    margin-left: 10%;
+}
+
+.col-sm-2.adjusted{
+    margin-top: 10px;
+}
+
+.ShippingInfo{
+    float: left;    
+    width: 80%;
+        border-bottom: 1px solid #e5e5e5;
+}
+
+.form-group.adjusted{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+btn-secondary.outline{
+      border: .01px solid #8dd8ec;
+}
+
+.buttongroup{
+    margin-top: 5px;
+    margin-left: 269px;
+}
+
+.text-center {
+  padding-top: 20px;
+}
+.col-xs-12 {
+  background-color: #fff;
+}
+#sidebar {
+  height: 100%;
+  padding-right: 0;
+  padding-top: 20px;
+}
+#sidebar .nav {
+  width: 80%;
+}
+
+.panel-default.adjusted{
+    width: 70%;
+    margin-left: 23%;
+}
+
+.panel-default.top{
+    margin-top: 3%;
+}
+
+/* collapsed sidebar styles */
+@media screen and (max-width: 767px) {
+  .row-offcanvas {
+    position: relative;
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+  }
+  .row-offcanvas-right
+  .sidebar-offcanvas {
+    right: -41.6%;
+  }
+
+  .row-offcanvas-left
+  .sidebar  -offcanvas {
+    left: -41.6%;
+  }
+  .row-offcanvas-right.active {
+    right: 41.6%;
+  }
+  .row-offcanvas-left.active {
+    left: 41.6%;
+  }
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+    width: 41.6%;
+  }
+  #sidebar {
+    padding-top:0;
+  }
+}
+

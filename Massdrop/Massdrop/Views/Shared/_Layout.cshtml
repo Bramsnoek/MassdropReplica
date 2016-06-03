@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Massdrop</title>
+
+    <link href="../Content/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../Content/Category.css" rel="stylesheet" type="text/css" />
+    <link href="../Content/bootstrap-social.css" rel="stylesheet" type="text/css" />
+    <link href="../Content/carousel.css" rel="stylesheet" type="text/css" />
+    <link href="../Content/font-awesome.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+    <header class="home_nav">
+        <div class="watermark">
+        </div>
+        <a class="btn btn-lg btn-secondary login" href="#" role="button" data-toggle="modal" data-target="#LogModal">
+            Log In
+        </a>
+    </header>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" style="letter-spacing: 1px;">
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img class="first-slide" src="~/Content/Images/Banner.jpg" alt="First slide">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1 style="font-size: 48px; font-weight: 700;">BRINGING ENTHUSIASTS TOGETHER</h1>
+                        <p style="font-size: 18px; font-weight: 700;">Explore communities, products and stories you're passionate about.</p>
+                        <p>
+                            <a class="btn btn-lg btn-primary btn-social outline email" href="#" role="button" data-toggle="modal" data-target="#MailModal"><span class="glyphicon glyphicon-envelope adjusted"></span>SIGN UP WITH EMAIL</a>
+                            <a class="btn btn-lg btn-primary facebook btn-social btn-facebook" href="#" role="button">
+                                <span class="fa fa-facebook"></span>SIGN UP WITH FACEBOOK
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="MailModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title adjusted" id="myModalLabel" style="text-align: center;">Sign Up With Email</h3>
+                </div>
+                <div class="modal-body" style="width: 70%; margin-left: 15%; margin-right: 15%;">
+                    <form>
+
+                        <label for="name" class="control-label" style="margin-top: 20px; margin-left: 1px; font-size: 16px;">Email</label>
+                        <input type="email" value='' class="form-control adjusted" id="name" placeholder="Email">
+
+
+                        <label for="name" class="control-label" style="margin-top: 20px; margin-left: 1px; font-size: 16px;">Password</label>
+                        <input type="password" value='' class="form-control adjusted" id="name" placeholder="Password" style="margin-bottom: 20px;">
+
+                        <a class="btn btn-lg btn-primary email modalButton" href="#" role="button" data-toggle="modal" onclick="closeMailModal()">SIGN UP</a>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <p style="text-align: center; font-size: 20px; margin-top: 20px;">Already a member? <a href="#" data-toggle="modal" data-target="#LogModal" onclick="closeMailModal()">Log In</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="LogModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title adjusted" id="myModalLabel" style="text-align: center;">Log In</h3>
+                </div>
+                <div class="modal-body" style="width: 70%; margin-left: 15%; margin-right: 15%;">
+                    <form>
+
+                        <label for="name" class="control-label" style="margin-top: 20px; margin-left: 1px; font-size: 16px;">Email</label>
+                        <input type="email" value='' class="form-control adjusted" id="name" placeholder="Email">
+
+
+                        <label for="name" class="control-label" style="margin-top: 20px; margin-left: 1px; font-size: 16px;">Password</label>
+                        <input type="password" value='' class="form-control adjusted" id="name" placeholder="Password" style="margin-bottom: 20px;">
+
+                        <a class="btn btn-lg btn-primary email modalButton" href="#" role="button" data-toggle="modal" onclick="closeLogModal()">LOG IN</a>
+
+                        <p style="text-align: center; font-size: 15px; margin-top: 20px;">I Forgot My <a href="#" data-toggle="modal" data-target="#PasswordModal" onclick="closeLogModal()">Password</a></p>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <p style="text-align: center; font-size: 20px; margin-top: 20px;">Not a member yet? <a href="#" data-toggle="modal" data-target="#MailModal" onclick="closeLogModal()">Sign Up</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="PasswordModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title adjusted" id="myModalLabel" style="text-align: center;">Log In</h3>
+                </div>
+                <div class="modal-body" style="width: 70%; margin-left: 15%; margin-right: 15%;">
+                    <form>
+
+                        <label for="name" class="control-label" style="margin-top: 20px; margin-left: 1px; font-size: 16px;">Email</label>
+                        <input type="email" value='' class="form-control adjusted" id="name" placeholder="Email">
+
+                        <a class="btn btn-lg btn-primary email modalButton" href="#" role="button" data-toggle="modal" onclick="closePasswordModal()">SEND RESET LINK</a>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <p style="text-align: center; font-size: 20px; margin-top: 20px;">Not a member yet? <a href="#" data-toggle="modal" data-target="#MailModal" onclick="closePasswordModal()">Sign Up</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="categorywrapper">
+        <h2 class="categorytitle" style="font-weight: 900;">Find your interests</h2>
+        <p class="categorysubtitle">Everything on Massdrop is chosen, created, or inspired by our enthusiast communities.</p>
+        <div class="container body-content">
+            @RenderBody()
+        </div>
+        <div class="category-signup">
+            <h2 class="signup-title">Join your enthusiast community</h2>
+            <h3 class="signup-subtitle">Discover products and share stories with people who share your passion.</h3>
+            <a class="btn btn-lg btn-primary facebook btn-social btn-facebook" href="#" role="button"><span class="fa fa-facebook"></span>SIGN UP WITH FACEBOOK</a>
+            <p class="devider">
+                or
+            </p>
+            <a class="btn btn-lg btn-secondary btn-social outline email" href="#" role="button" data-toggle="modal" data-target="#MailModal"><span class="glyphicon glyphicon-envelope adjusted"></span>SIGN UP WITH EMAIL</a>
+        </div>
+    </section>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>
+
+<script>
+    function closeLogModal() {
+        $('#LogModal').modal('hide');
+    }
+
+    function closeSignUpModal() {
+        $('#MailModal').modal('hide');
+    }
+
+    function closeMailModal() {
+        $('#MailModal').modal('hide');
+    }
+
+    function closePasswordModal() {
+        $('#PasswordModal').modal('hide');
+    }
+</script>
