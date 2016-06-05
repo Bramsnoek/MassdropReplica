@@ -7,6 +7,7 @@ using Massdrop.Models;
 using Massdrop.Models.Database;
 using Massdrop.Repository.Interfaces;
 using System.Data;
+using Oracle.ManagedDataAccess.Client;
 
 namespace Massdrop.Repository.Contexts
 {
@@ -23,9 +24,10 @@ namespace Massdrop.Repository.Contexts
 		{
 			List<Models.Massdrop> massdrops = new List<Models.Massdrop>();
 
-			foreach(DataRow row in database.SelectData(new Oracle.ManagedDataAccess.Client.OracleCommand("Select * from massdrop")).Rows)
+			foreach(DataRow row in database.SelectData(new OracleCommand("Select * from massdrop")).Rows)
 			{
 				massdrops.Add(new Models.Massdrop(
+					Convert.ToInt32(row["ID"].ToString()),
 					Convert.ToDecimal(row["FIRST_MASSDROPPEDPRICE"].ToString()),
 					Convert.ToDecimal(row["SECOND_MASSDROPPEDPRICE"].ToString()),
 					Convert.ToDateTime(row["STARTDATE"].ToString()),
@@ -39,17 +41,25 @@ namespace Massdrop.Repository.Contexts
 
 		public bool Insert(Models.Massdrop source)
 		{
-			throw new NotImplementedException();
+			return database.InsertData(new OracleCommand("Insert into massdrop(Product_id, First_massdroppedprice, Second_massdroppedprice, startdate, enddate) Values (:Productid, :FirstPrice, :SecondPRice, :SDate, :EDate"),
+										new OracleParameter[] 
+										{
+											new OracleParameter("Productid", source.Product.ID),
+											new OracleParameter("FirstPrice", source.First_DroppedPrice),
+											new OracleParameter("SecondPrice", source.Second_DroppedPrice),
+											new OracleParameter("SDate", source.StartDate),
+											new OracleParameter("EDate", source.EndDate)
+										});
 		}
 
 		public bool Remove(Models.Massdrop source)
 		{
-			throw new NotImplementedException();
+			throw new NotSupportedException(); //Massdrops wont be removed, they'll just expire
 		}
 
 		public bool Update(Models.Massdrop source)
 		{
-			throw new NotImplementedException();
+			throw new NotSupportedException(); //Massdrops wont be updated once they've been created
 		}
 	}
 }

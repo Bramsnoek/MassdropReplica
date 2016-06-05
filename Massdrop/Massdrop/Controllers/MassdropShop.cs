@@ -32,10 +32,13 @@ namespace Massdrop.Controllers
 
 			foreach (Order order in OrderRepo.OrderRepo.Collection) // Koppelen Users en Orders
 			{
-				order.User = UserRepo.UserRepo.Collection.Single(x => x.ID == order.User.ID);
+				foreach(User user in UserRepo.UserRepo.Collection.Where(x => x.ID == order.User.ID))
+				{
+					order.User = user;
+				}
 			}
 
-			foreach (Models.Massdrop massdrop in massdropRepo.MassdropRepo.Collection)
+			foreach (Models.Massdrop massdrop in massdropRepo.MassdropRepo.Collection.Where(x => x.Discussion != null))
 			{
 				AttachUsersToReply(massdrop.Discussion);
 			}
@@ -47,8 +50,10 @@ namespace Massdrop.Controllers
 			{
 				foreach (Discussion subDiscussion in discussion.Replies)
 				{
-					subDiscussion.User = UserRepo.UserRepo.Collection.Single(x => x.ID == subDiscussion.User.ID);
-
+					foreach(User user in UserRepo.UserRepo.Collection.Where(x => x.ID == subDiscussion.User.ID))
+					{
+						subDiscussion.User = user;
+					}
 					AttachUsersToReply(subDiscussion);
 				}
 			}

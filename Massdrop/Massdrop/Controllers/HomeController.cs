@@ -17,8 +17,8 @@ namespace Massdrop.Controllers
 
         public ActionResult Index()
 		{
-			massdrop = new MassdropShop(null);
 			logInController = new LogInController();
+			Session["LogInController"] = logInController;
 
 			return View();
         }
@@ -36,10 +36,11 @@ namespace Massdrop.Controllers
 			else
 				return 0;
 		}
-
+		
 		public void CreateUser(string userName, string password)
 		{
-			logInController.CreateUser(password, userName);
+			LogInController loginController = (LogInController)Session["LogInController"];
+			loginController.CreateUser(password, userName);
 		}
 
 		public void CreateFacebookUser(string userName, string password)

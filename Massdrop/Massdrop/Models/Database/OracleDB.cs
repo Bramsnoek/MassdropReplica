@@ -75,11 +75,10 @@ namespace Massdrop.Models.Database
 					}
 				}
 			}
-			catch (OracleException)
+			catch (OracleException e)
 			{
-				throw;
-				//Console.Write(e.Message);
-				//return false;
+				Console.Write(e.Message);
+				return false;
 			}
 		}
 

@@ -21,10 +21,19 @@ namespace Massdrop.Repository
 			this.MassdropRepo = new GenericRepository<Models.Massdrop>(massdropContext);
 			this.DiscussionRepo = new GenericRepository<Discussion>(discussionContext);
 
-			foreach(Models.Massdrop massdrop in MassdropRepo.Collection)
+			 foreach (Models.Massdrop massdrop in MassdropRepo.Collection)
 			{
-				massdrop.Discussion = DiscussionRepo.Collection.Single(x => x.Massdrop.ID == massdrop.ID);
-				massdrop.Product = ProductRepo.Collection.Single(x => x.ID == massdrop.Product.ID);
+				foreach(Discussion discussion in DiscussionRepo.Collection.Where(x => x.Massdrop.ID == massdrop.ID))
+				{
+					massdrop.Discussion = discussion;
+					discussion.Massdrop = massdrop;
+				}
+				
+				foreach(Product product in ProductRepo.Collection.Where(x => x.ID == massdrop.Product.ID))
+				{
+					massdrop.Product = product;
+					product.Massdrop = massdrop;
+				}
 			}
 
 			ProductRepo.EnableListener();

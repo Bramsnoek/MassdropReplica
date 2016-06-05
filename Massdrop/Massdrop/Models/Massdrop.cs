@@ -68,8 +68,9 @@ namespace Massdrop.Models
 			this.ID = id;
 		}
 
-		public Massdrop(decimal first_droppedprice, decimal second_droppedprice, DateTime startdate, DateTime enddate, Product product)
+		public Massdrop(int id, decimal first_droppedprice, decimal second_droppedprice, DateTime startdate, DateTime enddate, Product product)
 		{
+			this.ID = id;
 			this.First_DroppedPrice = first_droppedprice;
 			this.Second_DroppedPrice = second_droppedprice;
 			this.StartDate = startdate;

@@ -40,10 +40,10 @@ namespace Massdrop.Models
 		{
 			List<Product> products = new List<Product>();
 
-			products.Add(new Product("Laptop", 399.99m, ProductCategory.Tech));
-			products.Add(new Product("Knife", 45.00m, ProductCategory.EverydayCarry));
-			products.Add(new Product("Heating Pot", 99.99m, ProductCategory.Ultralight));
-			products.Add(new Product("Rc Car", 199.99m, ProductCategory.RCCars));
+			products.Add(new Product(1, "Laptop", 399.99m, ProductCategory.Tech));
+			products.Add(new Product(2, "Knife", 45.00m, ProductCategory.EverydayCarry));
+			products.Add(new Product(3, "Heating Pot", 99.99m, ProductCategory.Ultralight));
+			products.Add(new Product(4, "Rc Car", 199.99m, ProductCategory.RCCars));
 
 			return products;
 		}
@@ -71,10 +71,10 @@ namespace Massdrop.Models
 		{
 			List<Massdrop> massdrops = new List<Massdrop>();
 
-			massdrops.Add(new Massdrop(350.00m, 330.00m, DateTime.Now, DateTime.Now.AddDays(50), GetProducts()[0]));
-			massdrops.Add(new Massdrop(40.00m, 35.00m, DateTime.Now, DateTime.Now.AddDays(90), GetProducts()[1]));
-			massdrops.Add(new Massdrop(90.00m, 80.00m, DateTime.Now, DateTime.Now.AddDays(90), GetProducts()[2]));
-			massdrops.Add(new Massdrop(180.00m, 160.00m, DateTime.Now, DateTime.Now.AddDays(90), GetProducts()[3]));
+			massdrops.Add(new Massdrop(1, 350.00m, 330.00m, DateTime.Now, DateTime.Now.AddDays(50), GetProducts()[0]));
+			massdrops.Add(new Massdrop(2, 40.00m, 35.00m, DateTime.Now, DateTime.Now.AddDays(90), GetProducts()[1]));
+			massdrops.Add(new Massdrop(3, 90.00m, 80.00m, DateTime.Now, DateTime.Now.AddDays(90), GetProducts()[2]));
+			massdrops.Add(new Massdrop(4, 180.00m, 160.00m, DateTime.Now, DateTime.Now.AddDays(90), GetProducts()[3]));
 
 			return massdrops;
 		}

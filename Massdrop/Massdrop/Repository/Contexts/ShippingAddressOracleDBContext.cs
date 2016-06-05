@@ -7,6 +7,7 @@ using Massdrop.Models;
 using Massdrop.Repository.Interfaces;
 using Massdrop.Models.Database;
 using System.Data;
+using Oracle.ManagedDataAccess.Client;
 
 namespace Massdrop.Repository.Contexts
 {
@@ -53,17 +54,40 @@ namespace Massdrop.Repository.Contexts
 
 		public bool Insert(Shipping_Address source)
 		{
-			throw new NotImplementedException();
+			return database.InsertData(new OracleCommand("Insert into Shipping_Address (Systemuser_id, Address, City, Province, Postalcode, Phonenumber) Values (:UserId, :Address, :City, :Province, :Postalcode, :PhoneNumber)"),
+														 new OracleParameter[]
+														 {
+															 new OracleParameter("UserId", source.User.ID),
+															 new OracleParameter("Address", source.Address),
+															 new OracleParameter("City", source.City),
+															 new OracleParameter("Province", source.Province),
+															 new OracleParameter("Postalcode", source.PostalCode),
+															 new OracleParameter("PhoneNumber", (source.PhoneNumber == 0) ? source.PhoneNumber : 0)
+														 });
 		}
 
 		public bool Remove(Shipping_Address source)
 		{
-			throw new NotImplementedException();
+			return database.InsertData(new OracleCommand("Drop * From Shipping__Address Where Id = :Id"),
+									   new OracleParameter[]
+									   {
+										   new OracleParameter("Id", source.ID)
+									   });
 		}
 
 		public bool Update(Shipping_Address source)
 		{
-			throw new NotImplementedException();
+			return database.InsertData(new OracleCommand("Update Shipping_address Set Systemuser_id = :UserId, Address = :Address, City = :City, Province = :Province, Postalcode = :Postalcode, Phonenumber = :PhoneNumber Where Id = :Id"),
+												new OracleParameter[]
+														 {
+															 new OracleParameter("Id", source.ID),
+															 new OracleParameter("UserId", source.User.ID),
+															 new OracleParameter("Address", source.Address),
+															 new OracleParameter("City", source.City),
+															 new OracleParameter("Province", source.Province),
+															 new OracleParameter("Postalcode", source.PostalCode),
+															 new OracleParameter("PhoneNumber", (source.PhoneNumber == 0) ? source.PhoneNumber : 0)
+														 });
 		}
 	}
 }

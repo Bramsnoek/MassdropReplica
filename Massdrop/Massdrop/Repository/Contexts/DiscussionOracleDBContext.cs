@@ -36,12 +36,12 @@ namespace Massdrop.Repository.Contexts
 
 				foreach(DataRow subrow in database.SelectData(new OracleCommand(@"Select * from discussion where DISCUSSION_ID is not null and discussion_id =" + tempDiscussion.ID)).Rows)
 				{
-					tempDiscussion.Replies.Add(new Discussion(Convert.ToInt32(row["ID"].ToString()),
-					row["MESSAGE"].ToString(),
-					Convert.ToInt32(row["LIKES"].ToString()),
-					Convert.ToDateTime(row["DATE"].ToString()),
-					new User(Convert.ToInt32(row["SYSTEMUSER_ID"].ToString())),
-					new Models.Massdrop(Convert.ToInt32(row["MASSDROP_ID"].ToString()))
+					tempDiscussion.Replies.Add(new Discussion(Convert.ToInt32(subrow["ID"].ToString()),
+					subrow["MESSAGE"].ToString(),
+					Convert.ToInt32(subrow["LIKES"].ToString()),
+					Convert.ToDateTime(subrow["DATE"].ToString()),
+					new User(Convert.ToInt32(subrow["SYSTEMUSER_ID"].ToString())),
+					new Models.Massdrop(Convert.ToInt32(subrow["MASSDROP_ID"].ToString()))
 					));
 				}
 				discussions.Add(tempDiscussion);
@@ -52,17 +52,32 @@ namespace Massdrop.Repository.Contexts
 
 		public bool Insert(Discussion source)
 		{
-			throw new NotImplementedException();
+			return database.InsertData(new OracleCommand("Insert Into Discussion(SYSTEMUSER_ID, MASSDROP_ID, MESSAGE) VALUES (:UserId, :MassdropId, :Message)"),
+												   new OracleParameter[]
+												   {
+													   new OracleParameter("UserId", source.User.ID),
+													   new OracleParameter("MassdropId", source.Massdrop.ID),
+													   new OracleParameter("Message", source.Message)
+												   });
 		}
 
 		public bool Remove(Discussion source)
 		{
-			throw new NotImplementedException();
+			return database.InsertData(new OracleCommand("Drop * From Discussion where ID = :ID"),
+														  new OracleParameter[]
+														  {
+															  new OracleParameter("ID", source.ID)
+														  });
 		}
 
 		public bool Update(Discussion source)
 		{
-			throw new NotImplementedException();
+			return database.InsertData(new OracleCommand("Update Discussion Set Message = :Message where ID = :ID"),
+														  new OracleParameter[]
+														  {
+															  new OracleParameter("Message", source.Message),
+															  new OracleParameter("ID", source.ID)
+														  });
 		}
 	}
 }

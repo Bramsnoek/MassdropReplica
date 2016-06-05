@@ -31,10 +31,7 @@ namespace Massdrop.Controllers
 
 		public void CreateUser(string password, string userName)
 		{
-			
+			tempUserRepo.UserRepo.Collection.Add(new User(userName, password));	
 		}
-
-
-		
 	}
 }

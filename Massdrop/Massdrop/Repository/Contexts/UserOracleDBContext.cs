@@ -7,6 +7,7 @@ using Massdrop.Models;
 using Massdrop.Models.Database;
 using Massdrop.Repository.Interfaces;
 using System.Data;
+using Oracle.ManagedDataAccess.Client;
 
 namespace Massdrop.Repository.Contexts
 {
@@ -23,7 +24,7 @@ namespace Massdrop.Repository.Contexts
 		{
 			List<User> users = new List<User>();
 
-			foreach(DataRow row in database.SelectData(new Oracle.ManagedDataAccess.Client.OracleCommand("Select * From SystemUser")).Rows)
+			foreach (DataRow row in database.SelectData(new OracleCommand("Select * From SystemUser")).Rows)
 			{
 				users.Add(new User(
 					row["EMAILADDRESS"].ToString(),
@@ -37,17 +38,31 @@ namespace Massdrop.Repository.Contexts
 
 		public bool Insert(User source)
 		{
-			throw new NotImplementedException();
+			return database.InsertData(new OracleCommand("Insert Into SYSTEMUSER (EmailAddress, name, SystemUserName, Password) Values (:EAddress, :Name, :Username, :Password)"),
+														 new OracleParameter[]
+														 {
+															 new OracleParameter("EAddress", source.EmailAddress),
+															 new OracleParameter("Name", (source.Name == null) ? "You are Nameless" : source.Name),
+															 new OracleParameter("Username", (source.UserName == null) ? "You Are UsernameLess" : source.UserName),
+															 new OracleParameter("Password", source.Password)
+														 });
 		}
 
 		public bool Remove(User source)
 		{
-			throw new NotImplementedException();
+			throw new NotSupportedException(); //Users wont't be removed
 		}
 
 		public bool Update(User source)
 		{
-			throw new NotImplementedException();
+			return database.InsertData(new OracleCommand("Update User Set EmailAddress = :EAddress, Name = :Name, SystemUsername = :Username, Password = :Password"),
+														 new OracleParameter[]
+														 {
+															 new OracleParameter("EAddress", source.EmailAddress),
+															 new OracleParameter("Name", source.Name),
+															 new OracleParameter("Username", source.UserName),
+															 new OracleParameter("Password", source.Password)
+														 });
 		}
 	}
 }

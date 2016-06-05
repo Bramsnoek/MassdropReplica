@@ -72,7 +72,10 @@ namespace Massdrop.Models
 			this.Likes = likes;
 			this.Date = date;
 			this.User = user;
-			this.Replies = new ExtendedBindingList<Discussion>(replies);
+			if (replies != null)
+				this.Replies = new ExtendedBindingList<Discussion>(replies);
+			else
+				this.replies = new ExtendedBindingList<Discussion>();
 			this.Massdrop = massdrop;
 		}
 

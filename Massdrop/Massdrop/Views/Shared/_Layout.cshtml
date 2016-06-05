@@ -50,13 +50,13 @@
                     <form>
 
                         <label for="name" class="control-label" style="margin-top: 20px; margin-left: 1px; font-size: 16px;">Email</label>
-                        <input type="email" value='' class="form-control adjusted" id="name" placeholder="Email">
+                        <input type="email" value='' class="form-control adjusted" id="signUpEmail" placeholder="Email">
 
 
                         <label for="name" class="control-label" style="margin-top: 20px; margin-left: 1px; font-size: 16px;">Password</label>
-                        <input type="password" value='' class="form-control adjusted" id="name" placeholder="Password" style="margin-bottom: 20px;">
+                        <input type="password" value='' class="form-control adjusted" id="signUpPassword" placeholder="Password" style="margin-bottom: 20px;">
 
-                        <a class="btn btn-lg btn-primary email modalButton" href="#" role="button" data-toggle="modal" onclick="closeMailModal()">SIGN UP</a>
+                        <a class="btn btn-lg btn-primary email modalButton" id="BtnSignUp" href="#" role="button" data-toggle="modal" onclick="SignUp()">SIGN UP</a>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -143,15 +143,46 @@
         $('#LogModal').modal('hide');
     }
 
-    function closeSignUpModal() {
-        $('#MailModal').modal('hide');
-    }
-
     function closeMailModal() {
         $('#MailModal').modal('hide');
     }
 
     function closePasswordModal() {
         $('#PasswordModal').modal('hide');
+    }
+
+    function SignUp(){
+        var username =  $('#signUpEmail').val();
+        var password = $('#signUpPassword').val();
+
+        if(username == ""){
+            alert('Please fill in an username!');
+            return;
+        }
+        if(password == ""){
+            alert('Please fill in a password!');
+            return;
+        }
+
+        if (password.toLowerCase() == password) {
+            alert('Your password must contain a capital letter!');
+            return;
+        }
+        if (password.length <= 6) {
+            alert('Your password must be longer than 6 characters!');
+            return;
+        }
+
+       $.ajax({
+           type: "POST",
+           url: "Home/CreateUser",
+           data: { userName : username, password : password },
+           succes: function(){
+               $('#MailModal').modal('hide');
+           },
+           failure: function(){
+               alert('failure');
+           }
+       });
     }
 </script>

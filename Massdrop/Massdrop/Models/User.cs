@@ -47,6 +47,14 @@ namespace Massdrop.Models
 			set { SetField(this, ref password, value); }
 		}
 
+		private Shipping_Address shipping_address;
+
+		public Shipping_Address Shipping_Address
+		{
+			get { return shipping_address; }
+			set { SetField(this, ref shipping_address, value); }
+		}
+
 		public User(int id)
 		{
 			this.ID = id;
@@ -56,6 +64,12 @@ namespace Massdrop.Models
 			this.EmailAddress = emailadress;
 			this.Name = name;
 			this.UserName = username;
+			this.Password = password;
+		}
+
+		public User(string emailaddress, string password)
+		{
+			this.EmailAddress = emailaddress;
 			this.Password = password;
 		}
 

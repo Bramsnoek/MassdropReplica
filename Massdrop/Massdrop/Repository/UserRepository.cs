@@ -19,7 +19,11 @@ namespace Massdrop.Repository
 
 			foreach(User user in UserRepo.Collection)
 			{
-				
+				foreach(Shipping_Address address in AddressRepo.Collection.Where(x => x.User.ID == user.ID))
+				{
+					user.Shipping_Address = address;
+					address.User = user;
+				}
 			}
 
 			UserRepo.EnableListener();

@@ -57,13 +57,22 @@ namespace Massdrop.Models
 			set { SetField(this, ref name, value); }
 		}
 
+		private Massdrop massdrop;
+
+		public Massdrop Massdrop
+		{
+			get { return massdrop; }
+			set { SetField(this, ref massdrop, value); }
+		}
+
 		public Product(int id)
 		{
 			this.ID = id;
 		}
 
-		public Product(string name, decimal price, ProductCategory category)
+		public Product(int id, string name, decimal price, ProductCategory category)
 		{
+			this.id = id;
 			this.Category = category;
 			this.Name = name;
 			this.Price = price;
