@@ -10,10 +10,24 @@ namespace Massdrop.Controllers
     public class ProductController : Controller
     {
 		MassdropShop massdrop;
-        public ActionResult Index(string id = "Popular Drops")
+        public ActionResult Index(string id = "Popular")
         {
 			massdrop = (MassdropShop)Session["massdrop"];
 			ViewData["CategoryName"] = id;
+			ViewData["Name"] = massdrop.UserLoggedIn.Name;
+
+			List<Models.Massdrop> drops = massdrop.massdropRepo.MassdropRepo.Collection.ToList();
+
+			if (id == "Popular")
+			{
+				ViewData["ProductList"] = new List<Models.Massdrop>(massdrop.massdropRepo.MassdropRepo.Collection);
+			}
+			else
+			{
+				ViewData["ProductList"] = massdrop.massdropRepo.MassdropRepo.Collection.All(x => x.Product.Category == (ProductCategory)Enum.Parse(typeof(ProductCategory), id));
+			}
+
+
 			return View("ProductView", "_ProductLayout");
         }
 

@@ -76,13 +76,13 @@
                     <form>
 
                         <label for="name" class="control-label" style="margin-top: 20px; margin-left: 1px; font-size: 16px;">Email</label>
-                        <input type="email" value='' class="form-control adjusted" id="name" placeholder="Email">
+                        <input type="email" value='' class="form-control adjusted" id="LogInEmail" placeholder="Email">
 
 
                         <label for="name" class="control-label" style="margin-top: 20px; margin-left: 1px; font-size: 16px;">Password</label>
-                        <input type="password" value='' class="form-control adjusted" id="name" placeholder="Password" style="margin-bottom: 20px;">
+                        <input type="password" value='' class="form-control adjusted" id="LogInPassword" placeholder="Password" style="margin-bottom: 20px;">
 
-                        <a class="btn btn-lg btn-primary email modalButton" href="#" role="button" data-toggle="modal" onclick="closeLogModal()">LOG IN</a>
+                        <a class="btn btn-lg btn-primary email modalButton" href="#" role="button" data-toggle="modal" onclick="LogIn()">LOG IN</a>
 
                         <p style="text-align: center; font-size: 15px; margin-top: 20px;">I Forgot My <a href="#" data-toggle="modal" data-target="#PasswordModal" onclick="closeLogModal()">Password</a></p>
                     </form>
@@ -149,6 +149,41 @@
 
     function closePasswordModal() {
         $('#PasswordModal').modal('hide');
+    }
+
+    function LogIn() {
+        var username = $('#LogInEmail').val();
+        var password = $('#LogInPassword').val();
+
+        if (username == "") {
+            alert('Please fill in an username!');
+            return;
+        }
+        if (password == "") {
+            alert('Please fill in a password!');
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "Home/LogIn",
+            data: { userName: username, password: password },
+            succes: function (result) {
+                alert(result);
+            },
+            failure: function () {
+                alert('failure');
+            }
+        });
+
+        var UserName = "test";
+
+        if(UserName != ""){
+            window.location.replace("/Product/Index")
+        }
+        else{
+            alert("Please check your username and password!");
+        }
     }
 
     function SignUp(){

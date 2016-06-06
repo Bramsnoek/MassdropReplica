@@ -33,6 +33,14 @@ namespace Massdrop.Models
 			set { SetField(this, ref id, value); }
 		}
 
+		private string imageurl;
+
+		public string ImageUrl
+		{
+			get { return imageurl; }
+			set { SetField(this, ref imageurl, value); }
+		}
+
 		private decimal price;
 
 		public decimal Price
@@ -72,6 +80,16 @@ namespace Massdrop.Models
 
 		public Product(int id, string name, decimal price, ProductCategory category)
 		{
+			this.id = id;
+			this.Category = category;
+			this.Name = name;
+			this.Price = price;
+			imageurl = "http://placehold.it/310x310";
+		}
+
+		public Product(int id, string name, decimal price, ProductCategory category, string imageurl)
+		{
+			this.ImageUrl = imageurl;
 			this.id = id;
 			this.Category = category;
 			this.Name = name;

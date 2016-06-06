@@ -19,7 +19,7 @@ namespace Massdrop.Controllers
 
 		public MassdropShop(User userLoggedIn)
 		{
-			//this.UserLoggedIn = userLoggedIn;
+			this.UserLoggedIn = userLoggedIn;
 
 			InitShop();
 		}

@@ -25,11 +25,14 @@ namespace Massdrop.Controllers
 
 		public int LogIn(string userName, string password)
 		{
-			User tempuser = logInController.CheckLogin(password, userName);
+			LogInController loginController = (LogInController)Session["LogInController"];
+
+			User tempuser = loginController.CheckLogin(password, userName);
 
 			if (tempuser != null)
 			{
 				massdrop = new MassdropShop(tempuser);
+				Session["LoggedInName"] = tempuser.Name;
 				Session["massdrop"] = massdrop;
 				return 1;
 			}

@@ -21,7 +21,7 @@ namespace Massdrop.Controllers
 		{
 			foreach(User user in tempUserRepo.UserRepo.Collection)
 			{
-				if(user.UserName == userName && user.Password == password)
+				if(user.EmailAddress == userName && user.Password == password)
 				{
 					return user;
 				}
