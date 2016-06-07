@@ -41,6 +41,14 @@ namespace Massdrop.Models
 			set { SetField(this, ref imageurl, value); }
 		}
 
+		private string description;
+
+		public string Description
+		{
+			get { return description; }
+			set { SetField(this, ref description, value); }
+		}
+
 		private decimal price;
 
 		public decimal Price
@@ -90,7 +98,7 @@ namespace Massdrop.Models
 			this.price = price * 1.50m;
 		}
 
-		public Product(int id, string name, decimal price, ProductCategory category, string imageurl)
+		public Product(int id, string name, decimal price, ProductCategory category, string imageurl, string description)
 		{
 			this.ImageUrl = imageurl;
 			this.id = id;
@@ -98,6 +106,7 @@ namespace Massdrop.Models
 			this.Name = name;
 			this.Price = price;
 			this.NormalPrice = price * 1.50m;
+			this.Description = description;
 		}
 	}
 }

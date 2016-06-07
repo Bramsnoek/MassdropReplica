@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Massdrop.Repository.Contexts;
 using Massdrop.Repository;
 using System.Data;
+using ExtendedObservableCollection;
 using Massdrop.Models;
 using System.Web.Services;
 using System.Web.Script.Services;

@@ -15,6 +15,8 @@ namespace Massdrop.Controllers
 		public LogInController()
 		{
 			tempUserRepo = new UserRepository(new UserOracleDBContext(), new ShippingAddressOracleDBContext());
+			tempUserRepo.UserRepo.EnableListener();
+			tempUserRepo.AddressRepo.EnableListener();
 		}
 
 		public User CheckLogin(string password, string userName)
@@ -31,7 +33,7 @@ namespace Massdrop.Controllers
 
 		public void CreateUser(string password, string userName)
 		{
-			tempUserRepo.UserRepo.Collection.Add(new User(userName, password));	
+			tempUserRepo.UserRepo.Collection.Add(new User(tempUserRepo.UserRepo.Collection.Count, userName, password));	
 		}
 	}
 }

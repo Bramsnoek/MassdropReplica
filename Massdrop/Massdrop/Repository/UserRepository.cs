@@ -21,7 +21,7 @@ namespace Massdrop.Repository
 			{
 				foreach(Shipping_Address address in AddressRepo.Collection.Where(x => x.User.ID == user.ID))
 				{
-					user.Shipping_Address = address;
+					user.Shipping_Addresses.Add(address); 
 					address.User = user;
 				}
 			}

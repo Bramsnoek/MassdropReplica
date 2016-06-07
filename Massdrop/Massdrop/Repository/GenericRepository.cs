@@ -30,7 +30,7 @@ namespace Massdrop.Repository
 
 		private void Collection_ExtendedPropertyListChanged(object sender, ExtendedListChangedEventArgs e)
 		{
-
+			Console.Write("test");
 		}
 
 		private void Collection_ExtendedPropertyChanged(object sender, ExtendedPropertyChangedEventArgs e)

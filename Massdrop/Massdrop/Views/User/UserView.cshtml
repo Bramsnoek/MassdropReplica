@@ -5,7 +5,7 @@
 }
 
 @{
-    Massdrop.Controllers.MassdropShop Massdrop = (Massdrop.Controllers.MassdropShop)Session["massdrop"];
+    Massdrop.Models.User user = (Massdrop.Models.User)ViewData["User"];
 }
 
 <div class="page-container">
@@ -98,81 +98,83 @@
                                 <div class="panel-heading"><h4>Shipping Addresses</h4></div>
                                 <div class="panel-body">
                                     <div class="panel-wrapper adjusted">
-                                        <form>
-                                            <div class="ShippingInfo">
-                                                <h4>test</h4>
-                                                <h5>tst, test</h5>
-                                                <h5>test, TN test US</h5>
-                                            </div>
-                                            <div class="ShippingButtons">
-                                                <button type="button" class="btn btn-danger">Delete</button>
-                                            </div>
-                                        </form>
+                                        @foreach (Massdrop.Models.Shipping_Address address in user.Shipping_Addresses)
+                                        {
+                                            <form>
+                                                <div class="ShippingInfo">
+                                                    <h4>@address.City</h4>
+                                                    <h5>@address.Address, @address.PostalCode</h5>
+                                                    <h5>@address.Province, @(address.PhoneNumber == 0) ? "" : (address.PhoneNumber</h5>
+                                                    <div class="ShippingButtons" style="float:right; margin-bottom: 5px;">
+                                                        <button type="button" id="@address.ID" class="btn btn-danger" onclick="RemoveShipping(this.id)">Delete</button>
+                                                    </div>
+                                                </div>
+
+                                            </form>}
                                     </div>
                                 </div>
                             </div>
-
-                            <p class="buttongroup">
-                                <a class="btn btn-sm btn-primary" style="background: #00aeda; border-color: #00aeda; margin-right: 15px; width: 96px;" href="#newShipping" aria-controls="newShipping" role="tab" data-toggle="tab">ADD</a>
-                            </p>
                         </div>
+
+                        <p class="buttongroup">
+                            <a class="btn btn-sm btn-primary" style="background: #00aeda; border-color: #00aeda; margin-right: 15px; width: 96px;" href="#newShipping" aria-controls="newShipping" role="tab" data-toggle="tab">ADD</a>
+                        </p>
                     </div>
 
-                    <div role="tabpanel" class="tab-pane" id="newShipping">
-                        <div class="panel panel-default adjusted top">
-                            <div class="panel-heading"><h4>New Shipping Address</h4></div>
-                            <div class="panel-body">
-                                <div class="panel-wrapper">
-                                    <form>
-                                        <div class="form-group row adjusted" style="height: 38px;">
-                                            <label for="Input" class="col-sm-2 form-control-label adjusted">Country</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="CountryInput" placeholder="Country">
-                                            </div>
+                <div role="tabpanel" class="tab-pane" id="newShipping">
+                    <div class="panel panel-default adjusted top">
+                        <div class="panel-heading"><h4>New Shipping Address</h4></div>
+                        <div class="panel-body">
+                            <div class="panel-wrapper">
+                                <form>
+                                    <div class="form-group row adjusted" style="height: 38px;">
+                                        <label for="Input" class="col-sm-2 form-control-label adjusted">Country</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="CountryInput" placeholder="Country">
                                         </div>
+                                    </div>
 
-                                        <div class="form-group row adjusted" style="height: 38px;">
-                                            <label for="Input" class="col-sm-2 form-control-label adjusted adjusted">Name</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="NameInput" placeholder="Name">
-                                            </div>
+                                    <div class="form-group row adjusted" style="height: 38px;">
+                                        <label for="Input" class="col-sm-2 form-control-label adjusted adjusted">Name</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="NameInput" placeholder="Name">
                                         </div>
+                                    </div>
 
-                                        <div class="form-group row adjusted" style="height: 38px;">
-                                            <label for="Input" class="col-sm-2 form-control-label adjusted">Address</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="AddressInput" placeholder="Address">
-                                            </div>
+                                    <div class="form-group row adjusted" style="height: 38px;">
+                                        <label for="Input" class="col-sm-2 form-control-label adjusted">Address</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="AddressInput" placeholder="Address">
                                         </div>
+                                    </div>
 
-                                        <div class="form-group row adjusted" style="height: 38px;">
-                                            <label for="Input" class="col-sm-2 form-control-label adjusted">City</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="CityInput" placeholder="City">
-                                            </div>
+                                    <div class="form-group row adjusted" style="height: 38px;">
+                                        <label for="Input" class="col-sm-2 form-control-label adjusted">City</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="CityInput" placeholder="City">
                                         </div>
+                                    </div>
 
 
-                                        <div class="form-group row adjusted" style="height: 38px;">
-                                            <label for="Input" class="col-sm-2 form-control-label adjusted">Postalcode</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="PostalCodeInput" placeholder="Postalcode">
-                                            </div>
+                                    <div class="form-group row adjusted" style="height: 38px;">
+                                        <label for="Input" class="col-sm-2 form-control-label adjusted">Postalcode</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="PostalCodeInput" placeholder="Postalcode">
                                         </div>
+                                    </div>
 
 
-                                        <div class="form-group row adjusted" style="height: 38px;">
-                                            <label for="Input" class="col-sm-2 form-control-label adjusted">Phone Number</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="PhoneNumberInput" placeholder="Phone Number">
-                                            </div>
+                                    <div class="form-group row adjusted" style="height: 38px;">
+                                        <label for="Input" class="col-sm-2 form-control-label adjusted">Phone Number</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="PhoneNumberInput" placeholder="Phone Number">
                                         </div>
-                                    </form>
-                                    <p class="buttongroup">
-                                        <a class="btn btn-sm btn-primary" style="background: #00aeda; border-color: #00aeda; margin-right: 15px; width: 96px;" href="#shipping" aria-controls="shipping" role="tab" data-toggle="tab">SAVE</a>
-                                        <a class="btn btn-sm btn-secondary" style="border: .05px solid #8dd8ec; " border-color #00aeda; margin-right 15px; width 96px;" href="#shipping" aria-controls="shipping" role="tab" data-toggle="tab">CANCEL</a>
-                                    </p>
-                                </div>
+                                    </div>
+                                </form>
+                                <p class="buttongroup">
+                                    <a class="btn btn-sm btn-primary" style="background: #00aeda; border-color: #00aeda; margin-right: 15px; width: 96px;" onclick="AddShipping()">SAVE</a>
+                                    <a class="btn btn-sm btn-secondary" style="border: .05px solid #8dd8ec; " border-color #00aeda; margin-right 15px; width 96px;" href="#shipping" aria-controls="shipping" role="tab" data-toggle="tab">CANCEL</a>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -216,8 +218,61 @@
 
     }
 
-    function ChangeToShipping() {
+    function RemoveShipping(shippingId) {
+        $.ajax({
+            type: "GET",
+            url: "/User/RemoveShippingAddres",
+            data: { id : shippingId },
+            dataType: "json",
+            success: function (data) {
+                window.location.replace("/User/Index");
+            },
+            failure: function (data) {
+            }
+        });
+    }
 
+    function AddShipping() {
+        var Country = $('#CountryInput').val();
+        var Name = $('#NameInput').val();
+        var Address = $('#AddressInput').val();
+        var City = $('#CityInput').val();
+        var Postalcode = $('#PostalCodeInput').val();
+        var Phonenumber = $('#PhoneNumberInput').val();
+
+        if (Country == "") {
+            alert('Please fill in a country!');
+            return;
+        }
+        if (Name == "") {
+            alert('Please fill in a name!');
+            return;
+        }
+        if (Address == "") {
+            alert('Please fill in an address!');
+            return;
+        }
+        if (City == "") {
+            alert('Please fill in a city!');
+            return;
+        }
+        if (Postalcode == "") {
+            alert('Please fill in a postalcode!');
+            return;
+        }
+
+        $.ajax({
+            type: "GET",
+            url: "/User/AddShippingAddress",
+            data: { address: Address, city: City, province: City, postalcode: Postalcode, phonenumber: Phonenumber },
+            dataType: "json",
+            success: function (data) {
+                if (data == 1) {
+                    window.location.replace("/User/Index");
+                }
+            },
+            failure: function (data) {
+            }
+        });
     }
 </script>
-

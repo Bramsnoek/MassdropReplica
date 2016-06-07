@@ -14,8 +14,11 @@ namespace Massdrop.Controllers
 		public ActionResult Index()
 		{
 			massdrop = (MassdropShop)Session["massdrop"];
+			ViewData["User"] = massdrop.UserLoggedIn;
 			return View("UserView", "_ProductLayout");
 		}
+
+		//public ActionResult 
 
 		public string ChangeUserInfo(string userName, string name, string email, string password, string oldpassword)
 		{
@@ -26,10 +29,20 @@ namespace Massdrop.Controllers
 				massdrop.UserLoggedIn.ChangeUserInfo(userName, name, email, password);
 				return "1";
 			}
-			else
-			{
-				return "0" ;
-			}
+			return "0";
+		}
+
+		public string AddShippingAddress(string address, string city, string province, string postalcode, string phonenumber)
+		{
+			massdrop = (MassdropShop)Session["massdrop"];
+			massdrop.UserLoggedIn.Shipping_Addresses.Add(new Shipping_Address(address, city, province, postalcode, massdrop.UserLoggedIn));
+			return "1";
+		}
+
+		public void RemoveShippingAddres(int id)
+		{
+			massdrop = (MassdropShop)Session["massdrop"];
+			massdrop.UserLoggedIn.Shipping_Addresses.Remove(massdrop.UserLoggedIn.Shipping_Addresses.First(x => x.ID == id));
 		}
 	}
 }

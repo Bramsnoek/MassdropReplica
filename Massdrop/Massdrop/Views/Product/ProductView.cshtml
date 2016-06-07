@@ -22,33 +22,34 @@
         @foreach (Massdrop.Models.Massdrop massdrop in ProductList)
         {
             <div class="col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <img src=@massdrop.Product.ImageUrl>
-                    <div class="caption">
-                        <section class="Shipping">
-                            <h3 style="text-align: left;">@massdrop.Product.Name</h3>
-                        </section>
-                        <section class="Shipping">
-                            <h4 class="productPrice" style="text-align: left;">Price: $@massdrop.Product.Price</h4>
-                            <h4 class="subProductPrice" style="text-align: left;">MSRP: $@massdrop.Product.NormalPrice</h4>
-                            <h5 style="text-align: left;">$25.00 SHIPPING TO: NETHERLANDS</h5>
-                        </section>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-danger" role="progressbar" style="width:50%;">
-                                Normal Price
-                            </div>
-                            <div class="progress-bar progress-bar-warning" role="progressbar" style="width:20%">
-                                Discount
-                            </div>
-                            <div class="progress-bar progress-bar-success" role="progressbar" style="width:30%">
-                                More Discount
+                <a href="/Product/ShowProductView?productName=@massdrop.Product.Name" style="text-decoration: none;">
+                    <div class="thumbnail" id="@massdrop.Product.Name">
+                        <img src=@massdrop.Product.ImageUrl>
+                        <div class="caption">
+                            <section class="Shipping">
+                                <h3 style="text-align: left;">@massdrop.Product.Name</h3>
+                            </section>
+                            <section class="Shipping">
+                                <h4 class="productPrice" style="text-align: left;">Price: $@massdrop.Product.Price</h4>
+                                <h4 class="subProductPrice" style="text-align: left;">MSRP: $@massdrop.Product.NormalPrice</h4>
+                                <h5 style="text-align: left;">$25.00 SHIPPING TO: NETHERLANDS</h5>
+                            </section>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-danger" role="progressbar" style="width:50%;">
+                                    Normal Price
+                                </div>
+                                <div class="progress-bar progress-bar-warning" role="progressbar" style="width:20%">
+                                    Discount
+                                </div>
+                                <div class="progress-bar progress-bar-success" role="progressbar" style="width:30%">
+                                    More Discount
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
+               
             </div>
         }
     </div>
-
 </div>
-

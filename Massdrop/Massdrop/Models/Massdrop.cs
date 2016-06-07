@@ -55,9 +55,9 @@ namespace Massdrop.Models
 			set { SetField(this, ref id, value); }
 		}
 
-		private Discussion discussion;
+		private ExtendedBindingList<Discussion> discussion;
 
-		public Discussion Discussion
+		public ExtendedBindingList<Discussion> Discussion
 		{
 			get { return discussion; }
 			set { SetField(this, ref discussion, value); }
@@ -66,6 +66,7 @@ namespace Massdrop.Models
 		public Massdrop(int id)
 		{
 			this.ID = id;
+			this.Discussion = new ExtendedBindingList<Models.Discussion>();
 		}
 
 		public Massdrop(int id, decimal first_droppedprice, decimal second_droppedprice, DateTime startdate, DateTime enddate, Product product)
@@ -76,6 +77,7 @@ namespace Massdrop.Models
 			this.StartDate = startdate;
 			this.EndDate = enddate;
 			this.Product = product;
+			this.discussion = new ExtendedBindingList<Models.Discussion>();
 		}
 	}
 }

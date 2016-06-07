@@ -22,7 +22,6 @@ namespace Massdrop.Controllers
 			InitShop();
 
 			this.UserLoggedIn = UserRepo.UserRepo.Collection.First(x => x.ID == userLoggedInId);
-
 		}
 
 		private void InitShop()
@@ -33,7 +32,7 @@ namespace Massdrop.Controllers
 
 			foreach (Order order in OrderRepo.OrderRepo.Collection) // Koppelen Users en Orders
 			{
-				foreach(User user in UserRepo.UserRepo.Collection.Where(x => x.ID == order.User.ID))
+				foreach (User user in UserRepo.UserRepo.Collection.Where(x => x.ID == order.User.ID))
 				{
 					order.User = user;
 				}
@@ -52,17 +51,17 @@ namespace Massdrop.Controllers
 			OrderRepo.OrderRepo.EnableListener();
 		}
 
-		private void AttachUsersToReply(Discussion discussion)
+		private void AttachUsersToReply(ExtendedBindingList<Discussion> discussion)
 		{
-			if (discussion.Replies != null)
+			foreach (Discussion sDiscussion in discussion)
 			{
-				foreach (Discussion subDiscussion in discussion.Replies)
+				foreach (User user in UserRepo.UserRepo.Collection.Where(x => x.ID == sDiscussion.User.ID))
 				{
-					foreach(User user in UserRepo.UserRepo.Collection.Where(x => x.ID == subDiscussion.User.ID))
-					{
-						subDiscussion.User = user;
-					}
-					AttachUsersToReply(subDiscussion);
+					sDiscussion.User = user;
+				}
+				if(sDiscussion.Replies != null)
+				{
+					AttachUsersToReply(sDiscussion.Replies);
 				}
 			}
 		}

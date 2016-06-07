@@ -61,13 +61,14 @@ namespace Massdrop.Repository.Contexts
 
 		public bool Update(User source)
 		{
-			return database.InsertData(new OracleCommand("Update User Set EmailAddress = :EAddress, Name = :Name, SystemUsername = :Username, Password = :Password"),
+			return database.InsertData(new OracleCommand("Update SystemUser Set EmailAddress = :EAddress, Name = :Name, SystemUsername = :Username, Password = :Password WHERE ID = :ID"),
 														 new OracleParameter[]
 														 {
 															 new OracleParameter("EAddress", source.EmailAddress),
 															 new OracleParameter("Name", source.Name),
 															 new OracleParameter("Username", source.UserName),
-															 new OracleParameter("Password", source.Password)
+															 new OracleParameter("Password", source.Password),
+															 new OracleParameter("ID", source.ID)
 														 });
 		}
 	}

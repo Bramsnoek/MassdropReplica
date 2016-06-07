@@ -30,7 +30,8 @@ namespace Massdrop.Repository.Contexts
 					row["NAME"].ToString(),
 					Convert.ToDecimal(row["PRICE"].ToString()),
 					(ProductCategory)(Convert.ToInt32(row["PRODUCT_CATEGORY_ID"].ToString())-1), 
-					row["IMAGEURL"].ToString()));
+					row["IMAGEURL"].ToString(), 
+					row["DESCRIPTION"].ToString()));
 			}
 
 			return products;

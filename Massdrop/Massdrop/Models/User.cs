@@ -47,9 +47,9 @@ namespace Massdrop.Models
 			set { SetField(this, ref password, value); }
 		}
 
-		private Shipping_Address shipping_address;
+		private ExtendedBindingList<Shipping_Address> shipping_address;
 
-		public Shipping_Address Shipping_Address
+		public ExtendedBindingList<Shipping_Address> Shipping_Addresses
 		{
 			get { return shipping_address; }
 			set { SetField(this, ref shipping_address, value); }
@@ -58,7 +58,17 @@ namespace Massdrop.Models
 		public User(int id)
 		{
 			this.ID = id;
+			this.Shipping_Addresses = new ExtendedBindingList<Shipping_Address>();
 		}
+
+		public User(int id, string emailaddres, string password)
+		{
+			this.ID = id;
+			this.EmailAddress = emailaddres;
+			this.Password = password;
+			this.Shipping_Addresses = new ExtendedBindingList<Shipping_Address>();
+		}
+
 		public User(int id, string emailadress, string name, string username, string password)
 		{
 			this.ID = id;
@@ -66,12 +76,14 @@ namespace Massdrop.Models
 			this.Name = name;
 			this.UserName = username;
 			this.Password = password;
+			this.Shipping_Addresses = new ExtendedBindingList<Shipping_Address>();
 		}
 
 		public User(string emailaddress, string password)
 		{
 			this.EmailAddress = emailaddress;
 			this.Password = password;
+			this.Shipping_Addresses = new ExtendedBindingList<Shipping_Address>();
 		}
 
 		public void ChangeUserInfo(string userName, string name, string email, string password)
@@ -85,12 +97,5 @@ namespace Massdrop.Models
 			if (password != null)
 				this.Password = password;
 		}
-
-		public void ChangeShippingAddress(string address, string city, string province, string postalcode)
-		{
-			
-		}
-
-		//public void RemoveShipping
 	}
 }

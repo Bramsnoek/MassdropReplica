@@ -24,11 +24,6 @@ namespace Massdrop.Controllers
 			}
 			else
 			{
-				ProductCategory category = (ProductCategory)Enum.Parse(typeof(ProductCategory), id);
-				foreach (Models.Massdrop drop in drops.Where(x => x.Product.Category == (ProductCategory)Enum.Parse(typeof(ProductCategory), id)))
-				{
-					Console.WriteLine("test");
-				}
 				ViewData["ProductList"] = drops.FindAll(x => x.Product.Category == (ProductCategory)Enum.Parse(typeof(ProductCategory), id));
 			}
 
@@ -36,24 +31,18 @@ namespace Massdrop.Controllers
 			return View("ProductView", "_ProductLayout");
         }
 
-		public ActionResult ProductPage(string id)
+		public ActionResult ShowProductView(string productName)
 		{
-			ViewData["ProductPageName"] = id;
-			ViewData["ProductPageCategory"] = ViewData["CategoryName"];
-			return View("ProductPageView", "_ProductLayout");
+			massdrop = (MassdropShop)Session["massdrop"];
+			Product selectedProduct = massdrop.massdropRepo.ProductRepo.Collection.Single(x => x.Name == productName);
+
+			return View("ProductPageView", selectedProduct);
 		}
 
-		public List<Product> Products()
+		public void AddComment(string commentText)
 		{
-			return new List<Product>(massdrop.massdropRepo.ProductRepo.Collection.Where(x => x.Category.ToString() == ViewData["CategoryName"].ToString()));
-		}
-
-		public string GetUserName()
-		{
-			if (massdrop.UserLoggedIn.Name != null)
-				return massdrop.UserLoggedIn.Name;
-			else
-				return massdrop.UserLoggedIn.UserName;
+			massdrop = (MassdropShop)Session["massdrop"];
+			Discussion newDiscussion = new Discussion()
 		}
 	}
 }
