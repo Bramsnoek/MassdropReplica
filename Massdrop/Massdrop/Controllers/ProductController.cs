@@ -20,11 +20,16 @@ namespace Massdrop.Controllers
 
 			if (id == "Popular")
 			{
-				ViewData["ProductList"] = new List<Models.Massdrop>(massdrop.massdropRepo.MassdropRepo.Collection);
+				ViewData["ProductList"] = drops;
 			}
 			else
 			{
-				ViewData["ProductList"] = massdrop.massdropRepo.MassdropRepo.Collection.All(x => x.Product.Category == (ProductCategory)Enum.Parse(typeof(ProductCategory), id));
+				ProductCategory category = (ProductCategory)Enum.Parse(typeof(ProductCategory), id);
+				foreach (Models.Massdrop drop in drops.Where(x => x.Product.Category == (ProductCategory)Enum.Parse(typeof(ProductCategory), id)))
+				{
+					Console.WriteLine("test");
+				}
+				ViewData["ProductList"] = drops.FindAll(x => x.Product.Category == (ProductCategory)Enum.Parse(typeof(ProductCategory), id));
 			}
 
 

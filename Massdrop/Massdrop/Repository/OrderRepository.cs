@@ -14,8 +14,6 @@ namespace Massdrop.Repository
 		public OrderRepository(IContext<Order> orderContext)
 		{
 			OrderRepo = new GenericRepository<Order>(orderContext);
-
-			OrderRepo.EnableListener();
 		}
 	}
 }

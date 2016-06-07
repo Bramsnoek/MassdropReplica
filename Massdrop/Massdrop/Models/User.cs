@@ -59,8 +59,9 @@ namespace Massdrop.Models
 		{
 			this.ID = id;
 		}
-		public User(string emailadress, string name, string username, string password)
+		public User(int id, string emailadress, string name, string username, string password)
 		{
+			this.ID = id;
 			this.EmailAddress = emailadress;
 			this.Name = name;
 			this.UserName = username;

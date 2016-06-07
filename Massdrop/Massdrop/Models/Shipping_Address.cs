@@ -57,15 +57,15 @@ namespace Massdrop.Models
 			set { SetField(this, ref postalcode, value); }
 		}
 
-		private int phonenumber;
+		private long phonenumber;
 
-		public int PhoneNumber
+		public long PhoneNumber
 		{
 			get { return phonenumber; }
 			set { SetField(this, ref phonenumber, value); }
 		}
 
-		public Shipping_Address(string address, string city, string province, string postalcode, User user, int phonenumber = 0)
+		public Shipping_Address(string address, string city, string province, string postalcode, User user, long phonenumber = 0)
 		{
 			this.Address = address;
 			this.City = city;

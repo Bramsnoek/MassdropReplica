@@ -7,11 +7,11 @@ using Oracle.ManagedDataAccess.Client;
 
 namespace Massdrop.Models.Database
 {
-    public sealed class OracleDB
-    {
-        private static string ConnString = "Data Source=localhost/xe;User Id=SYSTEM;Password=Bramsnoek123!;";
+	public sealed class OracleDB
+	{
+		private static string ConnString = "Data Source=localhost/xe;User Id=SYSTEM;Password=Bramsnoek123!;";
 
-        public OracleDB() { }
+		public OracleDB() { }
 
 		public DataTable SelectData(OracleCommand command, OracleParameter[] parameters = null)
 		{
@@ -42,6 +42,29 @@ namespace Massdrop.Models.Database
 			}
 		}
 
+		public int SelectSequenceValue(string sequenceName)
+		{
+			using (OracleConnection connection = new OracleConnection())
+			{
+				int id = -1;
+
+				connection.ConnectionString = ConnString;
+				connection.Open();
+
+				OracleCommand command = new OracleCommand("Select " + sequenceName + ".CURRVAL FROM DUAL");
+				command.Connection = connection;
+
+				OracleDataReader reader = command.ExecuteReader();
+
+				while (reader.Read())
+				{
+					id = reader.GetInt32(0);
+				}
+
+				return id;
+			}
+		}
+
 		public bool InsertData(OracleCommand command, OracleParameter[] parameters)
 		{
 			try
@@ -63,16 +86,16 @@ namespace Massdrop.Models.Database
 					cmd.Parameters.AddRange(parameters);
 
 					int check = cmd.ExecuteNonQuery();
+
 					transaction.Commit();
+
 
 					if (check > 0)
 					{
 						return true;
 					}
-					else
-					{
-						return false;
-					}
+
+					return false;
 				}
 			}
 			catch (OracleException e)

@@ -39,7 +39,7 @@ namespace Massdrop.Repository.Contexts
 
 		public bool Insert(Order source)
 		{
-			return database.InsertData(new OracleCommand("Insert into \"ORDER\"(Systemuser_id, Payment_method_id, Massdrop_id, Price) Values(:UserId, :MethodId, :MassdropId, :Price)"),
+			bool queryCheck = database.InsertData(new OracleCommand("Insert into \"ORDER\"(Systemuser_id, Payment_method_id, Massdrop_id, Price) Values(:UserId, :MethodId, :MassdropId, :Price)"),
 														 new OracleParameter[]
 														 {
 															 new OracleParameter("UserId", source.User.ID),
@@ -47,6 +47,8 @@ namespace Massdrop.Repository.Contexts
 															 new OracleParameter("MassdropId", source.Massdrop.ID),
 															 new OracleParameter("Price", source.Massdrop.Product.Price)
 														 });
+			source.ID = database.SelectSequenceValue("SEQ_ORDER");
+			return queryCheck;
 		}
 
 		public bool Remove(Order source)

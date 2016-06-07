@@ -41,7 +41,7 @@ namespace Massdrop.Repository.Contexts
 
 		public bool Insert(Models.Massdrop source)
 		{
-			return database.InsertData(new OracleCommand("Insert into massdrop(Product_id, First_massdroppedprice, Second_massdroppedprice, startdate, enddate) Values (:Productid, :FirstPrice, :SecondPRice, :SDate, :EDate"),
+			bool queryCheck = database.InsertData(new OracleCommand("Insert into massdrop(Product_id, First_massdroppedprice, Second_massdroppedprice, startdate, enddate) Values (:Productid, :FirstPrice, :SecondPRice, :SDate, :EDate"),
 										new OracleParameter[] 
 										{
 											new OracleParameter("Productid", source.Product.ID),
@@ -50,6 +50,8 @@ namespace Massdrop.Repository.Contexts
 											new OracleParameter("SDate", source.StartDate),
 											new OracleParameter("EDate", source.EndDate)
 										});
+			source.ID = database.SelectSequenceValue("SEQ_MASSDROP");
+			return queryCheck;
 		}
 
 		public bool Remove(Models.Massdrop source)

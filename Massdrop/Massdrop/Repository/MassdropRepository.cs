@@ -35,10 +35,6 @@ namespace Massdrop.Repository
 					product.Massdrop = massdrop;
 				}
 			}
-
-			ProductRepo.EnableListener();
-			MassdropRepo.EnableListener();
-			DiscussionRepo.EnableListener();
 		}
 	}
 }

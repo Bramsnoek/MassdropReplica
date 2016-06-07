@@ -165,36 +165,32 @@
         }
 
         $.ajax({
-            type: "POST",
-            url: "Home/LogIn",
+            type: "GET",
+            url: "/Home/LogIn",
             data: { userName: username, password: password },
-            succes: function (result) {
-                alert(result);
+            dataType: "json",
+            success: function (data) {
+                if (data == 1) {
+                    window.location.replace("/Product/Index");
+                }
+                else {
+                    alert('The username or password is incorrect!');
+                }
             },
-            failure: function () {
-                alert('failure');
+            failure: function (data) {
             }
         });
-
-        var UserName = "test";
-
-        if(UserName != ""){
-            window.location.replace("/Product/Index")
-        }
-        else{
-            alert("Please check your username and password!");
-        }
     }
 
-    function SignUp(){
-        var username =  $('#signUpEmail').val();
+    function SignUp() {
+        var username = $('#signUpEmail').val();
         var password = $('#signUpPassword').val();
 
-        if(username == ""){
+        if (username == "") {
             alert('Please fill in an username!');
             return;
         }
-        if(password == ""){
+        if (password == "") {
             alert('Please fill in a password!');
             return;
         }
@@ -208,16 +204,16 @@
             return;
         }
 
-       $.ajax({
-           type: "POST",
-           url: "Home/CreateUser",
-           data: { userName : username, password : password },
-           succes: function(){
-               $('#MailModal').modal('hide');
-           },
-           failure: function(){
-               alert('failure');
-           }
-       });
+        $.ajax({
+            type: "POST",
+            url: "Home/CreateUser",
+            data: { userName: username, password: password },
+            success: function (data) {
+                $('#MailModal').modal('hide');
+            },
+            failure: function () {
+                alert('failure');
+            }
+        });
     }
 </script>

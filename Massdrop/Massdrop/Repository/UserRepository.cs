@@ -25,9 +25,6 @@ namespace Massdrop.Repository
 					address.User = user;
 				}
 			}
-
-			UserRepo.EnableListener();
-			AddressRepo.EnableListener();
 		}
 	}
 }

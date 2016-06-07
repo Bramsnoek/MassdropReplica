@@ -17,11 +17,12 @@ namespace Massdrop.Controllers
 		public OrderRepository OrderRepo { get; set; }
 		public UserRepository UserRepo { get; set; }
 
-		public MassdropShop(User userLoggedIn)
+		public MassdropShop(int userLoggedInId)
 		{
-			this.UserLoggedIn = userLoggedIn;
-
 			InitShop();
+
+			this.UserLoggedIn = UserRepo.UserRepo.Collection.First(x => x.ID == userLoggedInId);
+
 		}
 
 		private void InitShop()
@@ -42,6 +43,13 @@ namespace Massdrop.Controllers
 			{
 				AttachUsersToReply(massdrop.Discussion);
 			}
+
+			UserRepo.UserRepo.EnableListener();
+			UserRepo.AddressRepo.EnableListener();
+			massdropRepo.DiscussionRepo.EnableListener();
+			massdropRepo.MassdropRepo.EnableListener();
+			massdropRepo.ProductRepo.EnableListener();
+			OrderRepo.OrderRepo.EnableListener();
 		}
 
 		private void AttachUsersToReply(Discussion discussion)

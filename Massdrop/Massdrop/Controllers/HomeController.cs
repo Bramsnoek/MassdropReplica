@@ -7,6 +7,8 @@ using Massdrop.Repository.Contexts;
 using Massdrop.Repository;
 using System.Data;
 using Massdrop.Models;
+using System.Web.Services;
+using System.Web.Script.Services;
 
 namespace Massdrop.Controllers
 {
@@ -23,7 +25,8 @@ namespace Massdrop.Controllers
 			return View();
         }
 
-		public int LogIn(string userName, string password)
+
+		public string LogIn(string userName, string password)
 		{
 			LogInController loginController = (LogInController)Session["LogInController"];
 
@@ -31,13 +34,14 @@ namespace Massdrop.Controllers
 
 			if (tempuser != null)
 			{
-				massdrop = new MassdropShop(tempuser);
+				massdrop = new MassdropShop(tempuser.ID);
 				Session["LoggedInName"] = tempuser.Name;
 				Session["massdrop"] = massdrop;
-				return 1;
+				RedirectToAction("Index", "Product");
+				return "1";
 			}
 			else
-				return 0;
+				return "0";
 		}
 		
 		public void CreateUser(string userName, string password)
@@ -49,6 +53,6 @@ namespace Massdrop.Controllers
 		public void CreateFacebookUser(string userName, string password)
 		{
 
-		}
+		}	
 	}
 }

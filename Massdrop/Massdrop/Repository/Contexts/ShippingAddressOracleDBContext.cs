@@ -44,7 +44,7 @@ namespace Massdrop.Repository.Contexts
 						row["PROVINCE"].ToString(),
 						row["POSTALCODE"].ToString(),
 						new User(Convert.ToInt32(row["SYSTEMUSER_ID"].ToString())),
-						Convert.ToInt32(row["PHONENUMBER"].ToString())
+						Convert.ToInt64(row["PHONENUMBER"].ToString())
 						));
 				}
 			}
@@ -68,11 +68,13 @@ namespace Massdrop.Repository.Contexts
 
 		public bool Remove(Shipping_Address source)
 		{
-			return database.InsertData(new OracleCommand("Drop * From Shipping__Address Where Id = :Id"),
+			bool queryCheck = database.InsertData(new OracleCommand("Drop * From Shipping__Address Where Id = :Id"),
 									   new OracleParameter[]
 									   {
 										   new OracleParameter("Id", source.ID)
 									   });
+			source.ID = database.SelectSequenceValue("SEQ_SHIPPING_ADDRESS");
+			return queryCheck;
 		}
 
 		public bool Update(Shipping_Address source)

@@ -27,6 +27,7 @@ namespace Massdrop.Repository.Contexts
 			foreach (DataRow row in database.SelectData(new OracleCommand("Select * From SystemUser")).Rows)
 			{
 				users.Add(new User(
+					Convert.ToInt32(row["ID"].ToString()),
 					row["EMAILADDRESS"].ToString(),
 					row["NAME"].ToString(),
 					row["SYSTEMUSERNAME"].ToString(),
@@ -37,15 +38,20 @@ namespace Massdrop.Repository.Contexts
 		}
 
 		public bool Insert(User source)
-		{
-			return database.InsertData(new OracleCommand("Insert Into SYSTEMUSER (EmailAddress, name, SystemUserName, Password) Values (:EAddress, :Name, :Username, :Password)"),
+		{		
+			source.Name = (source.Name == null) ? "Nameless" : source.Name;
+			source.UserName = (source.UserName == null) ? "UsernameLess" : source.UserName;
+
+			bool queryCheck = database.InsertData(new OracleCommand("Insert Into SYSTEMUSER (EmailAddress, Name, SystemUserName, Password) Values (:EAddress, :Name, :Username, :Password)"),
 														 new OracleParameter[]
 														 {
 															 new OracleParameter("EAddress", source.EmailAddress),
-															 new OracleParameter("Name", (source.Name == null) ? "You are Nameless" : source.Name),
-															 new OracleParameter("Username", (source.UserName == null) ? "You Are UsernameLess" : source.UserName),
+															 new OracleParameter("Name", source.Name),
+															 new OracleParameter("Username", source.UserName),
 															 new OracleParameter("Password", source.Password)
 														 });
+			source.ID = database.SelectSequenceValue("SEQ_SYSTEMUSER");
+			return queryCheck;
 		}
 
 		public bool Remove(User source)

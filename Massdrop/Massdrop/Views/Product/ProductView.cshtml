@@ -25,7 +25,14 @@
                 <div class="thumbnail">
                     <img src=@massdrop.Product.ImageUrl>
                     <div class="caption">
-                        <h3>@massdrop.Product.Name</h3>
+                        <section class="Shipping">
+                            <h3 style="text-align: left;">@massdrop.Product.Name</h3>
+                        </section>
+                        <section class="Shipping">
+                            <h4 class="productPrice" style="text-align: left;">Price: $@massdrop.Product.Price</h4>
+                            <h4 class="subProductPrice" style="text-align: left;">MSRP: $@massdrop.Product.NormalPrice</h4>
+                            <h5 style="text-align: left;">$25.00 SHIPPING TO: NETHERLANDS</h5>
+                        </section>
                         <div class="progress">
                             <div class="progress-bar progress-bar-danger" role="progressbar" style="width:50%;">
                                 Normal Price

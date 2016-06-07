@@ -52,13 +52,15 @@ namespace Massdrop.Repository.Contexts
 
 		public bool Insert(Discussion source)
 		{
-			return database.InsertData(new OracleCommand("Insert Into Discussion(SYSTEMUSER_ID, MASSDROP_ID, MESSAGE) VALUES (:UserId, :MassdropId, :Message)"),
+		  bool QueryCheck = database.InsertData(new OracleCommand("Insert Into Discussion(SYSTEMUSER_ID, MASSDROP_ID, MESSAGE) VALUES (:UserId, :MassdropId, :Message)"),
 												   new OracleParameter[]
 												   {
 													   new OracleParameter("UserId", source.User.ID),
 													   new OracleParameter("MassdropId", source.Massdrop.ID),
 													   new OracleParameter("Message", source.Message)
 												   });
+			source.ID = database.SelectSequenceValue("SEQ_DISCUSSION");
+			return QueryCheck;
 		}
 
 		public bool Remove(Discussion source)

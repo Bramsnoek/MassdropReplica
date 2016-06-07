@@ -14,9 +14,22 @@ namespace Massdrop.Controllers
 		public ActionResult Index()
 		{
 			massdrop = (MassdropShop)Session["massdrop"];
-			return View("UserView", "_ProductLayout");		
+			return View("UserView", "_ProductLayout");
 		}
 
-	
-    }
+		public string ChangeUserInfo(string userName, string name, string email, string password, string oldpassword)
+		{
+			massdrop = (MassdropShop)Session["massdrop"];
+
+			if (massdrop.UserLoggedIn.Password == oldpassword)
+			{
+				massdrop.UserLoggedIn.ChangeUserInfo(userName, name, email, password);
+				return "1";
+			}
+			else
+			{
+				return "0" ;
+			}
+		}
+	}
 }

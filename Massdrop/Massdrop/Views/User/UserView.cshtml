@@ -4,6 +4,10 @@
     Layout = "~/Views/Shared/_ProductLayout.cshtml";
 }
 
+@{
+    Massdrop.Controllers.MassdropShop Massdrop = (Massdrop.Controllers.MassdropShop)Session["massdrop"];
+}
+
 <div class="page-container">
     <div class="container">
         <div class="row row-offcanvas row-offcanvas-left">
@@ -26,14 +30,14 @@
                                         <div class="form-group row adjusted" style="height: 38px;">
                                             <label for="inputPassword3" class="col-sm-2 form-control-label adjusted">Username</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="inputPassword3" placeholder="Username">
+                                                <input type="text" class="form-control" id="ChangeUsernameInput" placeholder="Username">
                                             </div>
                                         </div>
 
                                         <div class="form-group row adjusted">
                                             <label for="inputPassword3" class="col-sm-2 form-control-label adjusted">Full Name</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="inputPassword3" placeholder="Full Name">
+                                                <input type="text" class="form-control" id="ChangeNameInput" placeholder="Full Name">
                                             </div>
                                         </div>
                                     </form>
@@ -51,21 +55,21 @@
                                     <div class="form-group row adjusted">
                                         <label for="InputEmail2" class="col-sm-2 form-control-label adjusted">Email</label>
                                         <div class="col-sm-10">
-                                            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
+                                            <input type="email" class="form-control" id="ChangeEmailInput" placeholder="jane.doe@example.com">
                                         </div>
                                     </div>
 
                                     <div class="form-group row adjusted">
                                         <label for="inputPassword3" class="col-sm-2 form-control-label adjusted">Old Password</label>
                                         <div class="col-sm-10">
-                                            <input type="password" class="form-control adjusted" id="inputPassword3">
+                                            <input type="password" class="form-control adjusted" id="ChangePWInputOld">
                                         </div>
                                     </div>
 
                                     <div class="form-group row adjusted">
                                         <label for="inputPassword3" class="col-sm-2 form-control-label adjusted">New Password</label>
                                         <div class="col-sm-10">
-                                            <input type="password" class="form-control adjusted" id="inputPassword3"
+                                            <input type="password" class="form-control adjusted" id="ChangePWInputNew"
                                                    placeholder="Please enter a new password">
                                         </div>
                                     </div>
@@ -73,7 +77,7 @@
                                     <div class="form-group row adjusted ">
                                         <label for="inputPassword3" class="col-sm-2 form-control-label adjusted">Retype new password</label>
                                         <div class="col-sm-10">
-                                            <input type="password" class="form-control adjusted" id="inputPassword3"
+                                            <input type="password" class="form-control adjusted" id="ChangePWInputNewCheck"
                                                    placeholder="Confirm your new password">
                                         </div>
                                     </div>
@@ -81,7 +85,7 @@
                             </div>
                         </div>
                         <p class="buttongroup">
-                            <a class="btn btn-sm btn-primary" style="background: #00aeda; border-color: #00aeda; margin-right: 15px; width: 96px;" href="#" role="button">SAVE</a>
+                            <a class="btn btn-sm btn-primary" style="background: #00aeda; border-color: #00aeda; margin-right: 15px; width: 96px;" href="#" role="button" onclick="ChangeUser()">SAVE</a>
                             <a class="btn btn-sm btn-secondary" style="border: .05px solid #8dd8ec; " href="#" role="button">
                                 CANCEL
                             </a>
@@ -123,28 +127,28 @@
                                         <div class="form-group row adjusted" style="height: 38px;">
                                             <label for="Input" class="col-sm-2 form-control-label adjusted">Country</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="Input" placeholder="Country">
+                                                <input type="text" class="form-control" id="CountryInput" placeholder="Country">
                                             </div>
                                         </div>
 
                                         <div class="form-group row adjusted" style="height: 38px;">
                                             <label for="Input" class="col-sm-2 form-control-label adjusted adjusted">Name</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="Input" placeholder="Name">
+                                                <input type="text" class="form-control" id="NameInput" placeholder="Name">
                                             </div>
                                         </div>
 
                                         <div class="form-group row adjusted" style="height: 38px;">
                                             <label for="Input" class="col-sm-2 form-control-label adjusted">Address</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="Input" placeholder="Address">
+                                                <input type="text" class="form-control" id="AddressInput" placeholder="Address">
                                             </div>
                                         </div>
 
                                         <div class="form-group row adjusted" style="height: 38px;">
                                             <label for="Input" class="col-sm-2 form-control-label adjusted">City</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="Input" placeholder="City">
+                                                <input type="text" class="form-control" id="CityInput" placeholder="City">
                                             </div>
                                         </div>
 
@@ -152,7 +156,7 @@
                                         <div class="form-group row adjusted" style="height: 38px;">
                                             <label for="Input" class="col-sm-2 form-control-label adjusted">Postalcode</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="Input" placeholder="Postalcode">
+                                                <input type="text" class="form-control" id="PostalCodeInput" placeholder="Postalcode">
                                             </div>
                                         </div>
 
@@ -160,13 +164,13 @@
                                         <div class="form-group row adjusted" style="height: 38px;">
                                             <label for="Input" class="col-sm-2 form-control-label adjusted">Phone Number</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="Input" placeholder="Phone Number">
+                                                <input type="text" class="form-control" id="PhoneNumberInput" placeholder="Phone Number">
                                             </div>
                                         </div>
                                     </form>
                                     <p class="buttongroup">
                                         <a class="btn btn-sm btn-primary" style="background: #00aeda; border-color: #00aeda; margin-right: 15px; width: 96px;" href="#shipping" aria-controls="shipping" role="tab" data-toggle="tab">SAVE</a>
-                                        <a class="btn btn-sm btn-secondary" style="border: .05px solid #8dd8ec; " border-color: #00aeda; margin-right: 15px; width: 96px;" href="#shipping" aria-controls="shipping" role="tab" data-toggle="tab">CANCEL</a>
+                                        <a class="btn btn-sm btn-secondary" style="border: .05px solid #8dd8ec; " border-color #00aeda; margin-right 15px; width 96px;" href="#shipping" aria-controls="shipping" role="tab" data-toggle="tab">CANCEL</a>
                                     </p>
                                 </div>
                             </div>
@@ -179,7 +183,36 @@
 </div>
 
 <script>
-    function ChangeToUser() {
+    function ChangeUser() {
+        var username = $('#ChangeUsernameInput').val();
+        var name = $('#ChangeNameInput').val();
+        var email = $('#ChangeEmailInput').val();
+
+        var oldpassword = $('#ChangePWInputOld').val();
+
+        var newpassword = $('#ChangePWInputNew').val();
+        var newpasswordcheck = $('#ChangePWInputNew').val();
+
+        if (newpassword != newpasswordcheck) {
+            alert("The new passwords don't match!");
+        }
+
+        $.ajax({
+            type: "GET",
+            url: "/User/ChangeUserInfo",
+            data: { userName: username, name: name, email: email, password: newpassword, oldpassword: oldpassword },
+            dataType: "json",
+            success: function (data) {
+                if (data == 1) {
+                    alert('Info changed automatically!')
+                }
+                else {
+                    alert('The password is incorrect!');
+                }
+            },
+            failure: function (data) {
+            }
+        });
 
     }
 

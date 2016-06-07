@@ -29,7 +29,7 @@ namespace Massdrop.Repository.Contexts
 					Convert.ToInt32(row["ID"].ToString()),
 					row["NAME"].ToString(),
 					Convert.ToDecimal(row["PRICE"].ToString()),
-					(ProductCategory)Convert.ToInt32(row["PRODUCT_CATEGORY_ID"]), 
+					(ProductCategory)(Convert.ToInt32(row["PRODUCT_CATEGORY_ID"].ToString())-1), 
 					row["IMAGEURL"].ToString()));
 			}
 
@@ -38,13 +38,15 @@ namespace Massdrop.Repository.Contexts
 
 		public bool Insert(Product source)
 		{
-			return database.InsertData(new OracleCommand("Insert Into product (Product_Category_id, Name, Price) Values (:Pid, :Name, :Price)"),
+			bool queryCheck =  database.InsertData(new OracleCommand("Insert Into product (Product_Category_id, Name, Price) Values (:Pid, :Name, :Price)"),
 														 new OracleParameter[] 
 														 {
 															 new OracleParameter("Pid", (int)source.Category),
 															 new OracleParameter("Name", source.Name),
 															 new OracleParameter("Price", source.Price)
 														 });
+			source.ID = database.SelectSequenceValue("SEQ_PRODUCT");
+			return queryCheck;
 		}
 
 		public bool Remove(Product source)
