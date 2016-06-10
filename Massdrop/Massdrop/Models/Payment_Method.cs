@@ -43,10 +43,5 @@ namespace Massdrop.Models
 		{
 			this.Type = type;
 		}
-
-		public void GetTransactionCost()
-		{
-
-		}
 	}
 }

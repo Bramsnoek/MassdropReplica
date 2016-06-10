@@ -100,11 +100,13 @@
                                     <div class="panel-wrapper adjusted">
                                         @foreach (Massdrop.Models.Shipping_Address address in user.Shipping_Addresses)
                                         {
+                                            var phoneNumber = (address.PhoneNumber == 0) ? 0000000000 : address.PhoneNumber;
+
                                             <form>
                                                 <div class="ShippingInfo">
                                                     <h4>@address.City</h4>
                                                     <h5>@address.Address, @address.PostalCode</h5>
-                                                    <h5>@address.Province, @(address.PhoneNumber == 0) ? "" : (address.PhoneNumber</h5>
+                                                    <h5>@address.Province</h5>
                                                     <div class="ShippingButtons" style="float:right; margin-bottom: 5px;">
                                                         <button type="button" id="@address.ID" class="btn btn-danger" onclick="RemoveShipping(this.id)">Delete</button>
                                                     </div>
@@ -121,60 +123,61 @@
                         </p>
                     </div>
 
-                <div role="tabpanel" class="tab-pane" id="newShipping">
-                    <div class="panel panel-default adjusted top">
-                        <div class="panel-heading"><h4>New Shipping Address</h4></div>
-                        <div class="panel-body">
-                            <div class="panel-wrapper">
-                                <form>
-                                    <div class="form-group row adjusted" style="height: 38px;">
-                                        <label for="Input" class="col-sm-2 form-control-label adjusted">Country</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="CountryInput" placeholder="Country">
+                    <div role="tabpanel" class="tab-pane" id="newShipping">
+                        <div class="panel panel-default adjusted top">
+                            <div class="panel-heading"><h4>New Shipping Address</h4></div>
+                            <div class="panel-body">
+                                <div class="panel-wrapper">
+                                    <form>
+                                        <div class="form-group row adjusted" style="height: 38px;">
+                                            <label for="Input" class="col-sm-2 form-control-label adjusted">Country</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="CountryInput" placeholder="Country">
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="form-group row adjusted" style="height: 38px;">
-                                        <label for="Input" class="col-sm-2 form-control-label adjusted adjusted">Name</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="NameInput" placeholder="Name">
+                                        <div class="form-group row adjusted" style="height: 38px;">
+                                            <label for="Input" class="col-sm-2 form-control-label adjusted adjusted">Name</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="NameInput" placeholder="Name">
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="form-group row adjusted" style="height: 38px;">
-                                        <label for="Input" class="col-sm-2 form-control-label adjusted">Address</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="AddressInput" placeholder="Address">
+                                        <div class="form-group row adjusted" style="height: 38px;">
+                                            <label for="Input" class="col-sm-2 form-control-label adjusted">Address</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="AddressInput" placeholder="Address">
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="form-group row adjusted" style="height: 38px;">
-                                        <label for="Input" class="col-sm-2 form-control-label adjusted">City</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="CityInput" placeholder="City">
+                                        <div class="form-group row adjusted" style="height: 38px;">
+                                            <label for="Input" class="col-sm-2 form-control-label adjusted">City</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="CityInput" placeholder="City">
+                                            </div>
                                         </div>
-                                    </div>
 
 
-                                    <div class="form-group row adjusted" style="height: 38px;">
-                                        <label for="Input" class="col-sm-2 form-control-label adjusted">Postalcode</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="PostalCodeInput" placeholder="Postalcode">
+                                        <div class="form-group row adjusted" style="height: 38px;">
+                                            <label for="Input" class="col-sm-2 form-control-label adjusted">Postalcode</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="PostalCodeInput" placeholder="Postalcode">
+                                            </div>
                                         </div>
-                                    </div>
 
 
-                                    <div class="form-group row adjusted" style="height: 38px;">
-                                        <label for="Input" class="col-sm-2 form-control-label adjusted">Phone Number</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="PhoneNumberInput" placeholder="Phone Number">
+                                        <div class="form-group row adjusted" style="height: 38px;">
+                                            <label for="Input" class="col-sm-2 form-control-label adjusted">Phone Number</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="PhoneNumberInput" placeholder="Phone Number">
+                                            </div>
                                         </div>
-                                    </div>
-                                </form>
-                                <p class="buttongroup">
-                                    <a class="btn btn-sm btn-primary" style="background: #00aeda; border-color: #00aeda; margin-right: 15px; width: 96px;" onclick="AddShipping()">SAVE</a>
-                                    <a class="btn btn-sm btn-secondary" style="border: .05px solid #8dd8ec; " border-color #00aeda; margin-right 15px; width 96px;" href="#shipping" aria-controls="shipping" role="tab" data-toggle="tab">CANCEL</a>
-                                </p>
+                                    </form>
+                                    <p class="buttongroup">
+                                        <a class="btn btn-sm btn-primary" style="background: #00aeda; border-color: #00aeda; margin-right: 15px; width: 96px;" onclick="AddShipping()">SAVE</a>
+                                        <a class="btn btn-sm btn-secondary" style="border: .05px solid #8dd8ec; " border-color #00aeda; margin-right 15px; width 96px;" href="#shipping" aria-controls="shipping" role="tab" data-toggle="tab">CANCEL</a>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -206,7 +209,7 @@
             dataType: "json",
             success: function (data) {
                 if (data == 1) {
-                    alert('Info changed automatically!')
+                    alert('Info changed succesfully!')
                 }
                 else {
                     alert('The password is incorrect!');
@@ -222,10 +225,10 @@
         $.ajax({
             type: "GET",
             url: "/User/RemoveShippingAddres",
-            data: { id : shippingId },
+            data: { id: shippingId },
             dataType: "json",
             success: function (data) {
-                window.location.replace("/User/Index");
+                location.reload();
             },
             failure: function (data) {
             }
@@ -268,7 +271,7 @@
             dataType: "json",
             success: function (data) {
                 if (data == 1) {
-                    window.location.replace("/User/Index");
+                    location.reload();
                 }
             },
             failure: function (data) {

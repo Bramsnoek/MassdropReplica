@@ -43,6 +43,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="aspsnippets.facebookapi">
+      <HintPath>..\..\..\..\..\Dropbox\Music\aspsnippets.facebookapi.dll</HintPath>
+    </Reference>
     <Reference Include="ExtendedObservableCollection">
       <HintPath>..\..\..\ICT 4 Rails\ExtendedObservableCollection.dll</HintPath>
     </Reference>
@@ -169,6 +172,7 @@
     <Content Include="Content\fonts\Lato-Regular.woff2" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="scripts\home.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
     <None Include="scripts\jquery.validate-vsdoc.js" />
@@ -177,9 +181,11 @@
     <Content Include="scripts\jquery.validate.unobtrusive.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
+    <Content Include="scripts\product.js" />
     <Content Include="scripts\respond.js" />
     <Content Include="scripts\respond.min.js" />
     <None Include="scripts\_references.js" />
+    <Content Include="scripts\user.js" />
     <Content Include="Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />

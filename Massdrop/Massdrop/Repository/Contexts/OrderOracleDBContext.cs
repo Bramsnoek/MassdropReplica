@@ -43,7 +43,7 @@ namespace Massdrop.Repository.Contexts
 														 new OracleParameter[]
 														 {
 															 new OracleParameter("UserId", source.User.ID),
-															 new OracleParameter("MethodId", source.Payment_Method.ID),
+															 new OracleParameter("MethodId", Convert.ToInt32(source.Payment_Method.Type)),
 															 new OracleParameter("MassdropId", source.Massdrop.ID),
 															 new OracleParameter("Price", source.Massdrop.Product.Price)
 														 });
@@ -58,7 +58,12 @@ namespace Massdrop.Repository.Contexts
 
 		public bool Update(Order source)
 		{
-			throw new NotSupportedException(); //Orders wont be updated once they're placed
+			return database.InsertData(new OracleCommand("UPDATE ORDER SET ID = :ID where ID = :oldID"),
+									   new OracleParameter[]
+									   {
+										   new OracleParameter("ID", source.ID),
+										   new OracleParameter("oldID", source.ID)
+									   });
 		}
 	}
 }

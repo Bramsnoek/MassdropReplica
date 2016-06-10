@@ -6,6 +6,12 @@ using ExtendedObservableCollection;
 
 namespace Massdrop.Models
 {
+	public enum UserType
+	{
+		Normal,
+		Facebook
+	};
+
 	public sealed class User : ExtendedNotifyPropertyChanged, IModel
 	{
 		private int id;
@@ -39,6 +45,15 @@ namespace Massdrop.Models
 			get { return username; }
 			set { SetField(this, ref username, value); }
 		}
+
+		private string imageUrl;
+
+		public string ImageUrl
+		{
+			get { return imageUrl; }
+			set { SetField(this, ref imageUrl, value); }
+		}
+
 		private string password;
 
 		public string Password
@@ -69,20 +84,22 @@ namespace Massdrop.Models
 			this.Shipping_Addresses = new ExtendedBindingList<Shipping_Address>();
 		}
 
-		public User(int id, string emailadress, string name, string username, string password)
+		public User(int id, string emailadress, string name, string username, string password, string imageurl)
 		{
 			this.ID = id;
 			this.EmailAddress = emailadress;
 			this.Name = name;
 			this.UserName = username;
 			this.Password = password;
+			this.ImageUrl = imageurl;
 			this.Shipping_Addresses = new ExtendedBindingList<Shipping_Address>();
 		}
 
-		public User(string emailaddress, string password)
+		public User(string name, string emailaddress, string imageurl)
 		{
+			this.Name = name;
 			this.EmailAddress = emailaddress;
-			this.Password = password;
+			this.ImageUrl = imageurl;
 			this.Shipping_Addresses = new ExtendedBindingList<Shipping_Address>();
 		}
 

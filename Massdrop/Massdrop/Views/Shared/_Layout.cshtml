@@ -30,9 +30,13 @@
                         <p style="font-size: 18px; font-weight: 700;">Explore communities, products and stories you're passionate about.</p>
                         <p>
                             <a class="btn btn-lg btn-primary btn-social outline email" href="#" role="button" data-toggle="modal" data-target="#MailModal"><span class="glyphicon glyphicon-envelope adjusted"></span>SIGN UP WITH EMAIL</a>
-                            <a class="btn btn-lg btn-primary facebook btn-social btn-facebook" href="#" role="button">
+                            <a class="btn btn-lg btn-primary facebook btn-social btn-facebook" onclick="FB.login()"  role="button">
                                 <span class="fa fa-facebook"></span>SIGN UP WITH FACEBOOK
                             </a>
+                            <fb:login-button size="xlarge"
+                                             onlogin="checkLoginState()">
+                                SIGN UP WITH FACEBOOK
+                            </fb:login-button>
                         </p>
                     </div>
                 </div>
@@ -133,87 +137,8 @@
             <a class="btn btn-lg btn-secondary btn-social outline email" href="#" role="button" data-toggle="modal" data-target="#MailModal"><span class="glyphicon glyphicon-envelope adjusted"></span>SIGN UP WITH EMAIL</a>
         </div>
     </section>
+    <script src="~/scripts/home.js"></script>
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
 </body>
 </html>
-
-<script>
-    function closeLogModal() {
-        $('#LogModal').modal('hide');
-    }
-
-    function closeMailModal() {
-        $('#MailModal').modal('hide');
-    }
-
-    function closePasswordModal() {
-        $('#PasswordModal').modal('hide');
-    }
-
-    function LogIn() {
-        var username = $('#LogInEmail').val();
-        var password = $('#LogInPassword').val();
-
-        if (username == "") {
-            alert('Please fill in an username!');
-            return;
-        }
-        if (password == "") {
-            alert('Please fill in a password!');
-            return;
-        }
-
-        $.ajax({
-            type: "GET",
-            url: "/Home/LogIn",
-            data: { userName: username, password: password },
-            dataType: "json",
-            success: function (data) {
-                if (data == 1) {
-                    window.location.replace("/Product/Index");
-                }
-                else {
-                    alert('The username or password is incorrect!');
-                }
-            },
-            failure: function (data) {
-            }
-        });
-    }
-
-    function SignUp() {
-        var username = $('#signUpEmail').val();
-        var password = $('#signUpPassword').val();
-
-        if (username == "") {
-            alert('Please fill in an username!');
-            return;
-        }
-        if (password == "") {
-            alert('Please fill in a password!');
-            return;
-        }
-
-        if (password.toLowerCase() == password) {
-            alert('Your password must contain a capital letter!');
-            return;
-        }
-        if (password.length <= 6) {
-            alert('Your password must be longer than 6 characters!');
-            return;
-        }
-
-        $.ajax({
-            type: "POST",
-            url: "Home/CreateUser",
-            data: { userName: username, password: password },
-            success: function (data) {
-                $('#MailModal').modal('hide');
-            },
-            failure: function () {
-                alert('failure');
-            }
-        });
-    }
-</script>

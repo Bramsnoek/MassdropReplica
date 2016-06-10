@@ -35,14 +35,33 @@ namespace Massdrop.Controllers
 
 			if (tempuser != null)
 			{
-				massdrop = new MassdropShop(tempuser.ID);
-				Session["LoggedInName"] = tempuser.Name;
-				Session["massdrop"] = massdrop;
-				RedirectToAction("Index", "Product");
+				confirmLogin(tempuser);
 				return "1";
 			}
 			else
 				return "0";
+		}
+
+		public string FacebookLogIn(string name, string email, string imageurl)
+		{
+			LogInController loginController = (LogInController)Session["LogInController"];
+
+			User tempuser = loginController.CheckFacebookUser(name, email, imageurl);
+
+			if (tempuser != null)
+			{
+				confirmLogin(tempuser);
+				return "1";
+			}
+			else
+				return "0";
+		}
+
+		private void confirmLogin(User user)
+		{
+			massdrop = new MassdropShop(user.ID);
+			Session["LoggedInName"] = user.Name;
+			Session["massdrop"] = massdrop;
 		}
 		
 		public void CreateUser(string userName, string password)
@@ -50,10 +69,5 @@ namespace Massdrop.Controllers
 			LogInController loginController = (LogInController)Session["LogInController"];
 			loginController.CreateUser(password, userName);
 		}
-
-		public void CreateFacebookUser(string userName, string password)
-		{
-
-		}	
 	}
 }

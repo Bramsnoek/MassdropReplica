@@ -25,11 +25,11 @@ namespace Massdrop.Models
 		{
 			List<User> users = new List<User>();
 
-			users.Add(new User(1, "Bramsnoeklith@hotmail.com", "Bram", "Bramsnoek123", "Bramsnoek123"));
-			users.Add(new User(2, "Ferryjongmans@hotmail.com", "Ferry", "Ferry123", "Bramsnoek123"));
-			users.Add(new User(3, "Ruud@hotmail.com", "Ruud", "Ruud123", "Ruud123"));
-			users.Add(new User(4, "Sjoerd@hotmail.com", "Sjoerd", "Sjoerd123", "Sjoerd123"));
-			users.Add(new User(5, "Martijn@hotmail.com", "Martijn", "Martijn123", "Martijn123"));
+			users.Add(new User(1, "Bramsnoeklith@hotmail.com", "Bram", "Bramsnoek123", "Bramsnoek123", null));
+			users.Add(new User(2, "Ferryjongmans@hotmail.com", "Ferry", "Ferry123", "Bramsnoek123", null));
+			users.Add(new User(3, "Ruud@hotmail.com", "Ruud", "Ruud123", "Ruud123", null));
+			users.Add(new User(4, "Sjoerd@hotmail.com", "Sjoerd", "Sjoerd123", "Sjoerd123", null));
+			users.Add(new User(5, "Martijn@hotmail.com", "Martijn", "Martijn123", "Martijn123", null));
 
 			return users;
 		}

@@ -31,7 +31,8 @@ namespace Massdrop.Repository.Contexts
 					row["EMAILADDRESS"].ToString(),
 					row["NAME"].ToString(),
 					row["SYSTEMUSERNAME"].ToString(),
-					row["PASSWORD"].ToString()));
+					row["PASSWORD"].ToString(), 
+					row["IMAGEURL"].ToString()));
 			}
 
 			return users;
@@ -41,14 +42,16 @@ namespace Massdrop.Repository.Contexts
 		{		
 			source.Name = (source.Name == null) ? "Nameless" : source.Name;
 			source.UserName = (source.UserName == null) ? "UsernameLess" : source.UserName;
+			source.ImageUrl = (source.ImageUrl == null) ? "http://placehold.it/300x300" : source.ImageUrl;
 
-			bool queryCheck = database.InsertData(new OracleCommand("Insert Into SYSTEMUSER (EmailAddress, Name, SystemUserName, Password) Values (:EAddress, :Name, :Username, :Password)"),
+			bool queryCheck = database.InsertData(new OracleCommand("Insert Into SYSTEMUSER (EmailAddress, Name, SystemUserName, Password, IMAGEURL) Values (:EAddress, :Name, :Username, :Password, :ImageUrl)"),
 														 new OracleParameter[]
 														 {
 															 new OracleParameter("EAddress", source.EmailAddress),
 															 new OracleParameter("Name", source.Name),
 															 new OracleParameter("Username", source.UserName),
-															 new OracleParameter("Password", source.Password)
+															 new OracleParameter("Password", source.Password),
+															 new OracleParameter("ImageUrl", source.ImageUrl),
 														 });
 			source.ID = database.SelectSequenceValue("SEQ_SYSTEMUSER");
 			return queryCheck;

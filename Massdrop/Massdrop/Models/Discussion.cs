@@ -49,14 +49,7 @@ namespace Massdrop.Models
 			set { SetField(this, ref massdrop, value); }
 		}
 
-
-		private ExtendedBindingList<Discussion> replies;
-
-		public ExtendedBindingList<Discussion> Replies
-		{
-			get { return replies; }
-			set { SetField(this, ref replies, value); }
-		}
+		public ExtendedBindingList<Discussion> Replies { get; set; }
 
 		private int id;
 
@@ -75,15 +68,21 @@ namespace Massdrop.Models
 			if (replies != null)
 				this.Replies = new ExtendedBindingList<Discussion>(replies);
 			else
-				this.replies = new ExtendedBindingList<Discussion>();
+				this.Replies = new ExtendedBindingList<Discussion>();
 			this.Massdrop = massdrop;
 		}
 
-		public void LikeMessage(Discussion discussion)
+		public Discussion(string message, int likes, DateTime date, User user, Massdrop massdrop, List<Discussion> replies = null)
 		{
-
+			this.Message = message;
+			this.Likes = likes;
+			this.Date = date;
+			this.User = user;
+			if (replies != null)
+				this.Replies = new ExtendedBindingList<Discussion>(replies);
+			else
+				this.Replies = new ExtendedBindingList<Discussion>();
+			this.Massdrop = massdrop;
 		}
-
-
 	}
 }

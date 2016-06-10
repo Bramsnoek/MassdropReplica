@@ -4,11 +4,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Massdrop.Tests
 {
 	[TestClass]
-	public class UnitTest1
+	public class DiscussionTest
 	{
-		[TestMethod]
-		public void TestMethod1()
+		[TestInitialize]
+		public void Constructor()
 		{
+
 		}
 	}
 }

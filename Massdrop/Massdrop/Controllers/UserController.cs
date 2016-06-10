@@ -18,8 +18,6 @@ namespace Massdrop.Controllers
 			return View("UserView", "_ProductLayout");
 		}
 
-		//public ActionResult 
-
 		public string ChangeUserInfo(string userName, string name, string email, string password, string oldpassword)
 		{
 			massdrop = (MassdropShop)Session["massdrop"];

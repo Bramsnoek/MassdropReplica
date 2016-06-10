@@ -34,30 +34,30 @@
                     <div class="commentWrapper">
                         <div class="input-group adjusted">
                             <div class="input-group-btn">
-                                <button class="btn btn-default" type="button"> <span class="glyphicon glyphicon-envelope"></span></button>
+                                <button class="btn btn-default" type="button" onclick="AddComment()"> <span class="glyphicon glyphicon-comment"></span></button>
                             </div>
                             <input type="text" id="CommentInput" class="form-control" placeholder="Say Something..." style="width: 100%; padding: 14px 12px;">
                         </div>
                     </div>
-                       
+
                     @foreach (Discussion discussion in Model.Massdrop.Discussion)
                     { <div class="mComment">
                         <div class="Image">
                             <img src="http://placehold.it/72x72">
                         </div>
                         <div class="UserInfo">
-                            <h4 style="font-weight: 900">@discussion.User.UserName</h4>
+                            <h4 style="font-weight: 900">@discussion.User.Name</h4>
                         </div>
                         <div class="Commenttext">
                             <h4>@discussion.Message</h4>
                         </div>
                         <div class="LikeButton">
                             <a class="btn btn-sm btn-secondary blacked">
-                                <span class="glyphicon glyphicon-thumbs-up" style="font-size: 15px;"></span>
+                                <span class="glyphicon glyphicon-thumbs-up" style="font-size: 15px;" onclick="IncrementLike(this.id)" id=@discussion.ID></span>
                             </a>
                         </div>
                         <div class="Likes">
-                            <h5>Likes: @discussion.Likes</h5>
+                            <h5 id="">Likes: @discussion.Likes</h5>
                         </div>
                     </div>    if (discussion.Replies != null)
                         {
@@ -68,11 +68,11 @@
                                         <img src="http://placehold.it/72x72">
                                     </div>
                                     <div class="UserInfo">
-                                        <h4 style="font-weight: 900">@subDiscussion.User.UserName</h4>
-                                        <h5>Replying To: @discussion.User.UserName</h5>
+                                        <h4 style="font-weight: 900">@subDiscussion.User.Name</h4>
+                                        <h5>Replying To: @discussion.User.Name</h5>
                                     </div>
                                     <div class="Commenttext">
-                                        <h4>@subDiscussion.Message</h4>
+                                        <h4 style="max-width: 300px;">@subDiscussion.Message</h4>
                                     </div>
                                     <div class="LikeButton">
                                         <a class="btn btn-sm btn-secondary blacked">
@@ -83,7 +83,7 @@
                                         <h5>Likes: @subDiscussion.Likes</h5>
                                     </div>
                                 </div>
-                            }
+}
                         }
                     }
                 </div>
@@ -100,38 +100,10 @@
                 <section class="TimeLeft">
                     <h4>1 Day Left</h4>
                 </section>
-                <button type="button" class="btn btn-success adjusted">JOIN DROP</button>
+                <button type="button" class="btn btn-success adjusted" onclick="JoinDrop()">JOIN DROP</button>
             </div>
         </div>
 
     </div>
 
 </div>
-
-
-<script>
-    function AddComment() {
-        var comment = $('#CommentInput').val();
-
-        if (comment == "") {
-            alert('Please fill in a comment');
-            return;
-        }
-
-        $.ajax{
-            $.ajax({
-                type: "POST",
-                url: "/Product/AddComment",
-                data: { commentText : comment },
-                dataType: "json",
-                success: function (data) {
-                    if (data == 1) {
-                        location.reload();
-                    }
-                },
-                failure: function (data) {
-                }
-            });
-        }
-    }
-</script>

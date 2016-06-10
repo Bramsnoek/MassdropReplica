@@ -48,9 +48,9 @@
                     <form class="navbar-form navbar-right adjusted" role="search">
                         <div class="input-group">
                             <div class="input-group-btn">
-                                <button class="btn btn-default" type="button"> <span class="glyphicon glyphicon-search"></span></button>
+                                <button class="btn btn-default" type="button" onclick="Search()"> <span class="glyphicon glyphicon-search"></span></button>
                             </div>
-                            <input type="text" class="form-control" placeholder="Search" style="width: 210px; padding: 14px 12px;">
+                            <input type="text" class="form-control" id="InputSearch" placeholder="Search" style="width: 210px; padding: 14px 12px;">
                         </div>
                     </form>
                 </nav>
@@ -61,15 +61,11 @@
         <div id="test" class="container body-content" style="width: 100%;">
             @RenderBody()
         </div>
-        </div>
+    </div>
 
-        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-        <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/scripts/user.js"></script>
+    <script src="~/scripts/product.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
 </body>
 </html>
-
-<script>
-    function LogOut() {
-        window.location.replace('/Home/Index');
-    }
-</script>
