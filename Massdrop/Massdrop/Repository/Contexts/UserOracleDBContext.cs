@@ -13,13 +13,28 @@ namespace Massdrop.Repository.Contexts
 {
 	public sealed class UserOracleDBContext : IContext<User>
 	{
+		#region Fields
+		// The database class
 		private OracleDB database;
 
+		#endregion
+
+		#region Constructor
+		/// <summary>
+		/// This constructor instantiates the database class
+		/// </summary>
 		public UserOracleDBContext()
 		{
 			database = new OracleDB();
 		}
+		#endregion
 
+		#region Methods
+
+		/// <summary>
+		/// This function will get all the user data
+		/// </summary>
+		/// <returns>An IEnumerable of users</returns>
 		public IEnumerable<User> GetAll()
 		{
 			List<User> users = new List<User>();
@@ -38,6 +53,11 @@ namespace Massdrop.Repository.Contexts
 			return users;
 		}
 
+		/// <summary>
+		/// This function will insert a user to the database
+		/// </summary>
+		/// <param name="source">The user that will be inserted</param>
+		/// <returns>If the insert was succesfull, true or false</returns>
 		public bool Insert(User source)
 		{		
 			source.Name = (source.Name == null) ? "Nameless" : source.Name;
@@ -57,11 +77,21 @@ namespace Massdrop.Repository.Contexts
 			return queryCheck;
 		}
 
+		/// <summary>
+		/// This function will be used to remove a user
+		/// </summary>
+		/// <param name="source">The user to be removed</param>
+		/// <returns>If the removal was succesfull, a true or false</returns>
 		public bool Remove(User source)
 		{
 			throw new NotSupportedException(); //Users wont't be removed
 		}
 
+		/// <summary>
+		/// This function will be used to update a user
+		/// </summary>
+		/// <param name="source">The user to be updated</param>
+		/// <returns>If the update was succesfull, a true or false</returns>
 		public bool Update(User source)
 		{
 			return database.InsertData(new OracleCommand("Update SystemUser Set EmailAddress = :EAddress, Name = :Name, SystemUsername = :Username, Password = :Password WHERE ID = :ID"),
@@ -74,5 +104,6 @@ namespace Massdrop.Repository.Contexts
 															 new OracleParameter("ID", source.ID)
 														 });
 		}
+		#endregion
 	}
 }

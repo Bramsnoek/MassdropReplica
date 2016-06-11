@@ -13,13 +13,26 @@ namespace Massdrop.Repository.Contexts
 {
 	public class MassdropOracleDBContext : IContext<Models.Massdrop>
 	{
+		#region Fields
+		// The database class instance
 		private OracleDB database;
+		#endregion
 
+		#region Constructor
+		/// <summary>
+		/// This constructor will instantiate the database class
+		/// </summary>
 		public MassdropOracleDBContext()
 		{
 			database = new OracleDB();
 		}
+		#endregion
 
+		#region Methods
+		/// <summary>
+		/// This function will get all the massdrops from the database
+		/// </summary>
+		/// <returns>An IEnumerable of massdrops</returns>
 		public IEnumerable<Models.Massdrop> GetAll()
 		{
 			List<Models.Massdrop> massdrops = new List<Models.Massdrop>();
@@ -39,6 +52,11 @@ namespace Massdrop.Repository.Contexts
 			return massdrops;
 		}
 
+		/// <summary>
+		/// This function will insert a massdrop into the database
+		/// </summary>
+		/// <param name="source">The massdrop instance that will be inserted</param>
+		/// <returns>If the insertion was successfull, a true or false</returns>
 		public bool Insert(Models.Massdrop source)
 		{
 			bool queryCheck = database.InsertData(new OracleCommand("Insert into massdrop(Product_id, First_massdroppedprice, Second_massdroppedprice, startdate, enddate) Values (:Productid, :FirstPrice, :SecondPRice, :SDate, :EDate"),
@@ -54,14 +72,25 @@ namespace Massdrop.Repository.Contexts
 			return queryCheck;
 		}
 
+		/// <summary>
+		/// This function will remove a massdrop from the database
+		/// </summary>
+		/// <param name="source">The massdrop instance that will be removed</param>
+		/// <returns>If the removal was successfull, a true or false</returns>
 		public bool Remove(Models.Massdrop source)
 		{
 			throw new NotSupportedException(); //Massdrops wont be removed, they'll just expire
 		}
 
+		/// <summary>
+		/// This function will update a massdrop to the database
+		/// </summary>
+		/// <param name="source">The massdrop instance that will be updated</param>
+		/// <returns>If the update was successfull, a true or false</returns>
 		public bool Update(Models.Massdrop source)
 		{
 			throw new NotSupportedException(); //Massdrops wont be updated once they've been created
 		}
+		#endregion
 	}
 }

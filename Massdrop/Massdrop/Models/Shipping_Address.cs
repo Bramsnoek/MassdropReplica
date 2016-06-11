@@ -7,8 +7,11 @@ using ExtendedObservableCollection;
 
 namespace Massdrop.Models
 {
-	public sealed class Shipping_Address : ExtendedNotifyPropertyChanged, IModel
+	public class Shipping_Address : ExtendedNotifyPropertyChanged, IModel
 	{
+		#region Full Properties
+
+		// The id of the shipping_address
 		private int id;
 
 		public int ID
@@ -17,6 +20,7 @@ namespace Massdrop.Models
 			set { SetField(this, ref id, value); }
 		}
 
+		// The address of the shipping_address
 		private string address;
 
 		public string Address
@@ -25,6 +29,7 @@ namespace Massdrop.Models
 			set { SetField(this, ref address, value); }
 		}
 
+		// The user of the shipping_address
 		private User user;
 
 		public User User
@@ -33,6 +38,7 @@ namespace Massdrop.Models
 			set { SetField(this, ref user, value); }
 		}
 
+		// The city of the shipping_address
 		private string city;
 
 		public string City
@@ -41,6 +47,7 @@ namespace Massdrop.Models
 			set { SetField(this, ref city, value); }
 		}
 
+		// The province of the shipping_address
 		private string province;
 
 		public string Province
@@ -49,6 +56,7 @@ namespace Massdrop.Models
 			set { SetField(this, ref province, value); }
 		}
 
+		// The postalcode of the shipping_address
 		private string postalcode;
 
 		public string PostalCode
@@ -57,6 +65,7 @@ namespace Massdrop.Models
 			set { SetField(this, ref postalcode, value); }
 		}
 
+		// The phonenumber of the shipping_address
 		private long phonenumber;
 
 		public long PhoneNumber
@@ -64,7 +73,19 @@ namespace Massdrop.Models
 			get { return phonenumber; }
 			set { SetField(this, ref phonenumber, value); }
 		}
+		#endregion
 
+		#region Constructor
+
+		/// <summary>
+		/// This constructor will be used to create a shipping_address
+		/// </summary>
+		/// <param name="address">The address of the shipping_address</param>
+		/// <param name="city">The city of the shipping_address</param>
+		/// <param name="province">The province of the shipping_address</param>
+		/// <param name="postalcode">The postalcode of the shipping_address</param>
+		/// <param name="user">The user of the shipping_addres</param>
+		/// <param name="phonenumber">The phonenumber of the shipping_addres</param>
 		public Shipping_Address(string address, string city, string province, string postalcode, User user, long phonenumber = 0)
 		{
 			this.Address = address;
@@ -74,5 +95,6 @@ namespace Massdrop.Models
 			this.Province = province;
 			this.User = user;
 		}
+		#endregion
 	}
 }

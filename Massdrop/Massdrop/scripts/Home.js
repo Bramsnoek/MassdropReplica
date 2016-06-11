@@ -140,7 +140,6 @@ function FacebookLogin() {
             success: function (data) {
                 if (data == '1') {
                     window.location.replace("/Product/Index");
-                    alert(data);
                 }
             },
             failure: function (data) {

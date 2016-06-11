@@ -9,10 +9,22 @@ namespace Massdrop.Models.Database
 {
 	public sealed class OracleDB
 	{
+		#region Fields
+		//The connection string to the database
 		private static string ConnString = "Data Source=localhost/xe;User Id=SYSTEM;Password=Bramsnoek123!;";
+		#endregion
 
+		#region Constructor
 		public OracleDB() { }
+		#endregion
 
+		#region Methods
+		/// <summary>
+		/// This function selects data from the database
+		/// </summary>
+		/// <param name="command">An Oraclecommand, this contains the SQL string</param>
+		/// <param name="parameters">An Array of parameters, if you dont want to give any you can leave this field empty</param>
+		/// <returns></returns>
 		public DataTable SelectData(OracleCommand command, OracleParameter[] parameters = null)
 		{
 			try
@@ -42,6 +54,11 @@ namespace Massdrop.Models.Database
 			}
 		}
 
+		/// <summary>
+		/// This function is used to select the currentvalue of a sequence
+		/// </summary>
+		/// <param name="sequenceName">The name of the sequence</param>
+		/// <returns></returns>
 		public int SelectSequenceValue(string sequenceName)
 		{
 			using (OracleConnection connection = new OracleConnection())
@@ -65,6 +82,12 @@ namespace Massdrop.Models.Database
 			}
 		}
 
+		/// <summary>
+		/// This function is used to insert data into the database
+		/// </summary>
+		/// <param name="command">An Oraclecommand, this contains the SQL string</param>
+		/// <param name="parameters">An Array of parameters</param>
+		/// <returns></returns>
 		public bool InsertData(OracleCommand command, OracleParameter[] parameters)
 		{
 			try
@@ -104,6 +127,6 @@ namespace Massdrop.Models.Database
 				return false;
 			}
 		}
-
+		#endregion
 	}
 }

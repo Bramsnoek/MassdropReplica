@@ -12,13 +12,26 @@ namespace Massdrop.Repository.Contexts
 {
 	public class DiscussionOracleDBContext : IContext<Models.Discussion>
 	{
+		#region Fields
+		// The database class instance
 		private OracleDB database;
+		#endregion
 
+		#region Constructor
+		/// <summary>
+		/// This constructor will instantiate the database
+		/// </summary>
 		public DiscussionOracleDBContext()
 		{
 			database = new OracleDB();
 		}
+		#endregion
 
+		#region Methods
+		/// <summary>
+		/// This function will get all discussions from the database
+		/// </summary>
+		/// <returns>An IEnumerable of discussions</returns>
 		public IEnumerable<Discussion> GetAll()
 		{
 			List<Discussion> discussions = new List<Discussion>();
@@ -50,6 +63,11 @@ namespace Massdrop.Repository.Contexts
 			return discussions;
 		}
 
+		/// <summary>
+		/// This function will insert a discussion into the database
+		/// </summary>
+		/// <param name="source">The discussion instance that will be inserted</param>
+		/// <returns>If the insertion was succesfull, a true or false</returns>
 		public bool Insert(Discussion source)
 		{
 		  bool QueryCheck = database.InsertData(new OracleCommand("Insert Into Discussion(SYSTEMUSER_ID, MASSDROP_ID, MESSAGE) VALUES (:UserId, :MassdropId, :Message)"),
@@ -63,6 +81,11 @@ namespace Massdrop.Repository.Contexts
 			return QueryCheck;
 		}
 
+		/// <summary>
+		/// This function will remove a discussion from the database
+		/// </summary>
+		/// <param name="source">The discussion instance that will be removed</param>
+		/// <returns>If the removal was succesfull, a true or false</returns>
 		public bool Remove(Discussion source)
 		{
 			return database.InsertData(new OracleCommand("Drop * From Discussion where ID = :ID"),
@@ -72,6 +95,11 @@ namespace Massdrop.Repository.Contexts
 														  });
 		}
 
+		/// <summary>
+		/// This function will update a discussion to the database
+		/// </summary>
+		/// <param name="source">The discussion instance that will be updated</param>
+		/// <returns>If the update was succesfull, a true or false</returns>
 		public bool Update(Discussion source)
 		{
 			return database.InsertData(new OracleCommand("Update Discussion Set Message = :Message where ID = :ID"),
@@ -81,5 +109,6 @@ namespace Massdrop.Repository.Contexts
 															  new OracleParameter("ID", source.ID)
 														  });
 		}
+		#endregion
 	}
 }

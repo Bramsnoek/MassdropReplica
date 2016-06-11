@@ -5,10 +5,18 @@ using System.Web;
 
 namespace Massdrop.Models
 {
+	/// <summary>
+	/// This static class contains testdata used for unit testing the repositories
+	/// </summary>
 	public static class TestData
 	{
 		#region User Data
-		private static List<Shipping_Address> GetShippingAddresses()
+
+		/// <summary>
+		/// This function will get all the testdata for shipping_addresses
+		/// </summary>
+		/// <returns>A list of shipping_addresses</returns>
+		public static List<Shipping_Address> GetShippingAddresses()
 		{
 			List<Shipping_Address> addresses = new List<Shipping_Address>();
 
@@ -21,6 +29,10 @@ namespace Massdrop.Models
 			return addresses;
 		}
 
+		/// <summary>
+		/// This function will get all the testdata for Users
+		/// </summary>
+		/// <returns>A list of Users</returns>
 		public static List<User> GetUsers()
 		{
 			List<User> users = new List<User>();
@@ -30,13 +42,21 @@ namespace Massdrop.Models
 			users.Add(new User(3, "Ruud@hotmail.com", "Ruud", "Ruud123", "Ruud123", null));
 			users.Add(new User(4, "Sjoerd@hotmail.com", "Sjoerd", "Sjoerd123", "Sjoerd123", null));
 			users.Add(new User(5, "Martijn@hotmail.com", "Martijn", "Martijn123", "Martijn123", null));
+			users.Add(new User(6));
+			users.Add(new User(7, "Bramsnoeklith@live.nl", "Bramsnoek123"));
+			users.Add(new User("Ruudje", "Ruudje@Ruudje.nl", "Imageurl"));
 
 			return users;
 		}
 		#endregion
 
 		#region Massdrop Data
-		private static List<Product> GetProducts()
+
+		/// <summary>
+		/// This function will get all the testdata for Products
+		/// </summary>
+		/// <returns>A list of Products</returns>
+		public static List<Product> GetProducts()
 		{
 			List<Product> products = new List<Product>();
 
@@ -44,29 +64,38 @@ namespace Massdrop.Models
 			products.Add(new Product(2, "Knife", 45.00m, ProductCategory.EverydayCarry));
 			products.Add(new Product(3, "Heating Pot", 99.99m, ProductCategory.Ultralight));
 			products.Add(new Product(4, "Rc Car", 199.99m, ProductCategory.RCCars));
+			products.Add(new Product(6, "Neat", 123, ProductCategory.Auto, "Image", "Its very nice!"));
 
 			return products;
 		}
 
-
-		private static List<Discussion> GetDiscussions()
+		/// <summary>
+		/// This function will get all the testdata for Discussions
+		/// </summary>
+		/// <returns>A list of Discussions</returns>
+		public static List<Discussion> GetDiscussions()
 		{
 			List<Discussion> discussions = new List<Discussion>();
 
-			//discussions.Add(new Discussion("Ferry is awesome!", 0, DateTime.Now, GetUsers()[0], new List<Discussion> { new Discussion("Ben ik het mee eens!", 0, DateTime.Now.AddDays(1), GetUsers()[1]) }));
-			//discussions.Add(new Discussion("Sjoerd is awesome!", 13, DateTime.Now.AddDays(10), GetUsers()[2], new List<Discussion>
-			//{
-			//	new Discussion("Ben ik het mee eens!", 0, DateTime.Now.AddDays(11), GetUsers()[0], new List<Discussion>
-			//	{
-			//		new Discussion("Ben ik het ook mee eens!", 0, DateTime.Now.AddDays(12), GetUsers()[4], new List<Discussion>
-			//		{
-			//			new Discussion("Ben ik het niet mee eens! Foei!", 13, DateTime.Now.AddDays(13), GetUsers()[3])
-			//		})
-			//	})
-			//}));
+			discussions.Add(new Discussion(1, "Ferry is awesome!", 0, DateTime.Now, GetUsers()[0], GetMassdrops()[0] , new List<Discussion> { new Discussion(1, "Ben ik het mee eens!", 0, DateTime.Now.AddDays(1), GetUsers()[1], GetMassdrops()[0]) }));
+			discussions.Add(new Discussion("Sjoerd is awesome!", 13, DateTime.Now.AddDays(10), GetUsers()[2], GetMassdrops()[1], new List<Discussion>
+			{
+				new Discussion("Ben ik het mee eens!", 0, DateTime.Now.AddDays(11), GetUsers()[0], GetMassdrops()[1], new List<Discussion>
+				{
+					new Discussion("Ben ik het ook mee eens!", 0, DateTime.Now.AddDays(12), GetUsers()[4], GetMassdrops()[1], new List<Discussion>
+					{
+						new Discussion(1, "Ben ik het niet mee eens! Foei!", 13, DateTime.Now.AddDays(13), GetUsers()[3], GetMassdrops()[1])
+					})
+				})
+			}));
 
 			return discussions;
 		}
+
+		/// <summary>
+		/// This function will get all the testdata for Massdrops
+		/// </summary>
+		/// <returns>A list of Massdrops</returns>
 		public static List<Massdrop> GetMassdrops()
 		{
 			List<Massdrop> massdrops = new List<Massdrop>();
@@ -81,7 +110,12 @@ namespace Massdrop.Models
 		#endregion
 
 		#region Order Data
-		private static List<Payment_Method> GetPaymentMethods()
+
+		/// <summary>
+		/// This function will get all the testdata for PaymentMethods
+		/// </summary>
+		/// <returns>A list of PaymentMethods</returns>
+		public static List<Payment_Method> GetPaymentMethods()
 		{
 			List<Payment_Method> methods = new List<Payment_Method>();
 
@@ -91,6 +125,10 @@ namespace Massdrop.Models
 			return methods;
 		}
 
+		/// <summary>
+		/// This function will get all the testdata for Orders
+		/// </summary>
+		/// <returns>A list of Orders</returns>
 		public static List<Order> GetOrders()
 		{
 			List<Order> orders = new List<Order>();

@@ -6,6 +6,7 @@ using ExtendedObservableCollection;
 
 namespace Massdrop.Models
 {
+	// This enum holds all the categories a product can be in
 	public enum ProductCategory
 	{
 		Ultralight,
@@ -23,8 +24,10 @@ namespace Massdrop.Models
 		Auto
 	}
 
-	public sealed class Product : ExtendedNotifyPropertyChanged, IModel
+	public class Product : ExtendedNotifyPropertyChanged, IModel
 	{
+		#region Full Properties
+		// The id of the product
 		private int id;
 
 		public int ID
@@ -33,6 +36,7 @@ namespace Massdrop.Models
 			set { SetField(this, ref id, value); }
 		}
 
+		// The imageurl of the product
 		private string imageurl;
 
 		public string ImageUrl
@@ -41,6 +45,7 @@ namespace Massdrop.Models
 			set { SetField(this, ref imageurl, value); }
 		}
 
+		// The description of the product
 		private string description;
 
 		public string Description
@@ -49,6 +54,7 @@ namespace Massdrop.Models
 			set { SetField(this, ref description, value); }
 		}
 
+		// The price of the product
 		private decimal price;
 
 		public decimal Price
@@ -57,6 +63,7 @@ namespace Massdrop.Models
 			set { SetField(this, ref price, value); }
 		}
 
+		// The category of the the product
 		private ProductCategory category;
 
 		public ProductCategory Category
@@ -65,6 +72,7 @@ namespace Massdrop.Models
 			set { SetField(this, ref category, value); }
 		}
 
+		// The name of the product
 		private string name;
 
 		public string Name
@@ -73,6 +81,7 @@ namespace Massdrop.Models
 			set { SetField(this, ref name, value); }
 		}
 
+		// The massdrop this product belongs to
 		private Massdrop massdrop;
 
 		public Massdrop Massdrop
@@ -81,13 +90,30 @@ namespace Massdrop.Models
 			set { SetField(this, ref massdrop, value); }
 		}
 
+		// The non discounted price of this product
 		public decimal NormalPrice { get; set; }
+		#endregion
+		
+		#region Constructors
 
+		/// <summary>
+		/// This constructor is used to make product instances used for linking
+		/// </summary>
+		/// <param name="id">The id of the product</param>
 		public Product(int id)
 		{
 			this.ID = id;
 		}
 
+
+
+		/// <summary>
+		/// This constructor will be used for testdata, to make sure we have all the fields covered
+		/// </summary>
+		/// <param name="id">The id of the product</param>
+		/// <param name="name">The name of the product</param>
+		/// <param name="price"> The price of the product</param>
+		/// <param name="category">The category of the product</param>
 		public Product(int id, string name, decimal price, ProductCategory category)
 		{
 			this.id = id;
@@ -98,6 +124,15 @@ namespace Massdrop.Models
 			this.price = price * 1.50m;
 		}
 
+		/// <summary>
+		/// This constructor is used to make new products that will be inserted into the datbaase
+		/// </summary>
+		/// <param name="id">The id of the product</param>
+		/// <param name="name">The name of the product</param>
+		/// <param name="price"> The price of the product</param>
+		/// <param name="category">The category of the product</param>
+		/// <param name="imageurl">The imageurl of the product</param>
+		/// <param name="description">The description of the product</param>
 		public Product(int id, string name, decimal price, ProductCategory category, string imageurl, string description)
 		{
 			this.ImageUrl = imageurl;
@@ -108,5 +143,6 @@ namespace Massdrop.Models
 			this.NormalPrice = price * 1.50m;
 			this.Description = description;
 		}
+		#endregion
 	}
 }

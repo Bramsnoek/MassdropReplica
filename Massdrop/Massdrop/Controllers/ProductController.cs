@@ -9,62 +9,69 @@ namespace Massdrop.Controllers
 {
     public class ProductController : Controller
     {
-		MassdropShop massdrop;
-        public ActionResult Index(string id = "Popular", string search = "")
+		#region Fields
+		// The instance to the massdropdrop that holds all the repositories
+		private MassdropShop massdrop;
+		#endregion
+
+		#region ViewMethods
+		/// <summary>
+		/// This function returns the homepage of the productoverview
+		/// </summary>
+		/// <param name="id">The id is the currently selected category, onload this is popular so you get to see all products</param>
+		/// <param name="search">This optional parameter is empty by default, by typing in the search bar you can search products</param>
+		/// <returns></returns>
+		public ActionResult Index(string id = "Popular", string search = "")
         {
 			massdrop = (MassdropShop)Session["massdrop"];
+
 			ViewData["CategoryName"] = id;
 			ViewData["LoggedUser"] = massdrop.UserLoggedIn;
-
-			List<Models.Massdrop> drops = massdrop.massdropRepo.MassdropRepo.Collection.ToList();
-
-			if(search != "")
-			{
-				ViewData["ProductList"] = drops.FindAll(x => x.Product.Name.Contains(search));
-			}
-			else if (id == "Popular")
-			{
-				ViewData["ProductList"] = drops;
-			}
-			else
-			{
-				ViewData["ProductList"] = drops.FindAll(x => x.Product.Category == (ProductCategory)Enum.Parse(typeof(ProductCategory), id));
-			}
-
+			ViewData["ProductList"] = massdrop.GetMassdrops(id, search);
 
 			return View("ProductView", "_ProductLayout");
         }
 
+		/// <summary>
+		/// This function returns a specific productpage
+		/// </summary>
+		/// <param name="productName">The name of the product, this is used to show the correct information</param>
+		/// <returns></returns>
 		public ActionResult ShowProductView(string productName)
 		{
 			massdrop = (MassdropShop)Session["massdrop"];
-			Product selectedProduct = massdrop.massdropRepo.ProductRepo.Collection.Single(x => x.Name == productName);
+
+			Product selectedProduct = massdrop.GetSelectedProduct(productName);
 
 			Session["selectedProduct"] = selectedProduct;
 
 			return View("ProductPageView", selectedProduct);
 		}
+		#endregion
 
+		#region Methods
+		/// <summary>
+		/// This function is used to add a comment to a massdrop
+		/// </summary>
+		/// <param name="commentText">The text of the comment you want to add</param>
 		public void AddComment(string commentText)
 		{
 			massdrop = (MassdropShop)Session["massdrop"];
 			Product currentProduct = (Product)Session["selectedProduct"];
 
-			Discussion newDiscussion = new Discussion(commentText, 0, DateTime.Now, massdrop.UserLoggedIn, currentProduct.Massdrop);
-			currentProduct.Massdrop.Discussion.Add(newDiscussion);
+			currentProduct.Massdrop.AddComment(commentText, massdrop.UserLoggedIn);
 		}
 
+		/// <summary>
+		/// This function is used to join a drop, which means you want to order a product
+		/// </summary>
+		/// <returns></returns>
 		public string JoinDrop()
 		{
 			massdrop = (MassdropShop)Session["massdrop"];
-			Product currentProduct = (Product)Session["selectedProduct"];
-			foreach(Order order in massdrop.OrderRepo.OrderRepo.Collection.Where(x => x.Massdrop == currentProduct.Massdrop && x.User == massdrop.UserLoggedIn))
-			{
-				return "0";
-			}
 
-			massdrop.OrderRepo.OrderRepo.Collection.Add(new Order(DateTime.Now, currentProduct.Price, massdrop.UserLoggedIn, new Payment_Method(PaymentType.Paypal), currentProduct.Massdrop));
-			return "1";
+			return (Convert.ToInt32(massdrop.JoinDrop((Product)Session["selectedProduct"]))).ToString();
 		}
+		#endregion
 	}
 }

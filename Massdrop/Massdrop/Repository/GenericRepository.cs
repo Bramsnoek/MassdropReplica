@@ -11,26 +11,40 @@ namespace Massdrop.Repository
 	public class GenericRepository<T>
 		where T : ExtendedNotifyPropertyChanged
 	{
+		#region Fields
 		private IContext<T> context;
+		#endregion
 
+		#region Constructor
+		// The collection that will hold the models for a certain Type (T)
 		public ExtendedObservableCollection<T> Collection { get; set; }
+		#endregion
 
+		#region Constructor 
+		/// <summary>
+		/// This constructor requires one context, it will be used to fill the collection with the right data
+		/// </summary>
+		/// <param name="context">The context used to retrieve the data</param>
 		public GenericRepository(IContext<T> context)
 		{
 			this.context = context;
 			Collection = new ExtendedObservableCollection<T>(context.GetAll());
 		}
+		#endregion
 
+		#region Methods
 		public void EnableListener()
 		{
 			Collection.CollectionChanged += Collection_CollectionChanged;
 			Collection.ExtendedPropertyChanged += Collection_ExtendedPropertyChanged;
 			Collection.ExtendedPropertyListChanged += Collection_ExtendedPropertyListChanged;
 		}
+		#endregion
 
+		#region Event Handlers
 		private void Collection_ExtendedPropertyListChanged(object sender, ExtendedListChangedEventArgs e)
 		{
-			Console.Write("test");
+			context.Insert((T)sender);
 		}
 
 		private void Collection_ExtendedPropertyChanged(object sender, ExtendedPropertyChangedEventArgs e)
@@ -52,5 +66,6 @@ namespace Massdrop.Repository
 					break;
 			}
 		}
+		#endregion
 	}
 }

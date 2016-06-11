@@ -12,6 +12,10 @@
     padding-right: 5px;
 }
 
+.titanic{
+    float: none;
+}
+
 .glyphicon.adjusted {
     margin-top: 4px;
 }

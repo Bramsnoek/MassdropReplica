@@ -12,13 +12,27 @@ namespace Massdrop.Repository.Contexts
 {
 	public class ProductOracleDBContext : IContext<Product>
 	{
+		#region Fields
+		// The database class instance
 		private OracleDB database;
+		#endregion
 
+		#region Constructor
+		/// <summary>
+		/// This constructor will instantiate the database class
+		/// </summary>
 		public ProductOracleDBContext()
 		{
 			database = new OracleDB();
 		}
+		#endregion
 
+		#region Methods
+
+		/// <summary>
+		/// This function will get all the products from the database
+		/// </summary>
+		/// <returns>An IEnumerable of products</returns>
 		public IEnumerable<Product> GetAll()
 		{
 			List<Product> products = new List<Product>();
@@ -37,6 +51,11 @@ namespace Massdrop.Repository.Contexts
 			return products;
 		}
 
+		/// <summary>
+		/// This function will insert a product into the database
+		/// </summary>
+		/// <param name="source">The class instance that will be inserted</param>
+		/// <returns>If the insertion was succesfull, a true or false</returns>
 		public bool Insert(Product source)
 		{
 			bool queryCheck =  database.InsertData(new OracleCommand("Insert Into product (Product_Category_id, Name, Price) Values (:Pid, :Name, :Price)"),
@@ -50,15 +69,25 @@ namespace Massdrop.Repository.Contexts
 			return queryCheck;
 		}
 
+		/// <summary>
+		/// This function will remove a product from the database
+		/// </summary>
+		/// <param name="source">The class instance that will be inserted</param>
+		/// <returns>If the removal was succesfull, a true or false</returns>
 		public bool Remove(Product source)
 		{
-			return database.InsertData(new OracleCommand("Drop * From Product Where Id = :Id"),
+			return database.InsertData(new OracleCommand("Drop * From Product Where Id = :Id"),	
 														 new OracleParameter[]
 														 {
 															 new OracleParameter("Id", source.ID)
 														 });
 		}
 
+		/// <summary>
+		/// This function will update a product to the database
+		/// </summary>
+		/// <param name="source">The class instance that will be inserted</param>
+		/// <returns>If the update was succesfull, a true or false</returns>
 		public bool Update(Product source)
 		{
 			return database.InsertData(new OracleCommand("Update Product Set Name = :Name, Price = :Price Where Id = :Id"),
@@ -69,5 +98,6 @@ namespace Massdrop.Repository.Contexts
 										   new OracleParameter("Id", source.ID)
 									   });
 		}
+		#endregion
 	}
 }
