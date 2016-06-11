@@ -106,9 +106,21 @@ namespace Massdrop.Models
 		/// </summary>
 		/// <param name="commenttext">The text of the comment you want to add</param>
 		/// <param name="user">The user that placed the discussion</param>
-		public void AddComment(string commenttext, User user)
+		public void AddComment(string commenttext, User user, int discussionId)
 		{
-			this.Discussions.Add(new Discussion(commenttext, 0, DateTime.Now, user, this));
+			Discussion newDiscussion = new Discussion(Discussions.Count + 1, commenttext, 0, DateTime.Now, user, this);
+
+			if (discussionId < 0)
+			{
+				this.Discussions.Add(newDiscussion);
+			}
+			else
+			{
+				Discussion selectedDiscussion = this.Discussions.Single(x => x.ID == discussionId);
+
+				selectedDiscussion.Replies.Add(newDiscussion);
+			}
+
 		}
 		#endregion
 	}

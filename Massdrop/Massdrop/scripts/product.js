@@ -97,7 +97,11 @@ function AddShipping() {
     });
 }
 
-function AddComment() {
+function LoadCommentModal(discussionId) {
+    $('#CommentModalContent').load('/Product/ShowReplyView/' + discussionId);
+}
+
+function AddComment(isReply) {
     var comment = $('#CommentInput').val();
 
     if (comment == "") {
@@ -108,13 +112,14 @@ function AddComment() {
     $.ajax({
         type: "POST",
         url: "/Product/AddComment",
-        data: { commentText: comment },
+        data: { commentText: comment, discussionId: isReply },
         dataType: "json",
         success: function (data) {
         },
         failure: function (data) {
         }
     });
+    $('#CommentModal').modal('hide');
     location.reload();
 }
 

@@ -1,0 +1,29 @@
+﻿@using Massdrop.Models
+@model Discussion
+
+
+<div class="modal-header">
+    @if (Model == null)
+    {
+        <h3 class="modal-title adjusted" id="myModalLabel" style="text-align: center;">Place a comment</h3>
+    }
+    else
+    {
+        <h3 class="modal-title adjusted" id="myModalLabel" style="text-align: center;">Replying to @Model.User.UserName</h3>
+    }
+</div>
+<div class="modal-body" style="width: 70%; margin-left: 15%; margin-right: 15%;">
+    <form>
+        <div class="form-group">
+            <textarea class="form-control" id="CommentInput" rows="3"></textarea>
+        </div>
+        @if (Model == null)
+        {
+            <button type="button" class="btn btn-primary" onclick="AddComment(-1)"> <span class="glyphicon glyphicon-comment" style="margin-right: 10px;"></span>Place Comment!</button>
+        }
+        else
+        {
+            <button type="button" class="btn btn-primary" onclick="AddComment(@Model.ID)"> <span class="glyphicon glyphicon-comment" style="margin-right: 10px;"></span>Place Reply!</button>
+        }
+    </form>
+</div>

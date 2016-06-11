@@ -47,6 +47,20 @@ namespace Massdrop.Controllers
 
 			return View("ProductPageView", selectedProduct);
 		}
+
+		public ActionResult ShowReplyView(int id)
+		{
+			massdrop = (MassdropShop)Session["massdrop"];
+			Product currentProduct = (Product)Session["selectedProduct"];
+
+			if (id == -1)
+				return PartialView("Commentview");
+			else
+			{
+				Discussion selectedDiscussion = currentProduct.Massdrop.Discussions.Single(x => x.ID == id);
+				return PartialView("Commentview", selectedDiscussion);
+			}
+		}
 		#endregion
 
 		#region Methods
@@ -54,12 +68,12 @@ namespace Massdrop.Controllers
 		/// This function is used to add a comment to a massdrop
 		/// </summary>
 		/// <param name="commentText">The text of the comment you want to add</param>
-		public void AddComment(string commentText)
+		public void AddComment(string commentText, int discussionId)
 		{
 			massdrop = (MassdropShop)Session["massdrop"];
 			Product currentProduct = (Product)Session["selectedProduct"];
 
-			currentProduct.Massdrop.AddComment(commentText, massdrop.UserLoggedIn);
+			currentProduct.Massdrop.AddComment(commentText, massdrop.UserLoggedIn, discussionId);
 		}
 
 		/// <summary>
