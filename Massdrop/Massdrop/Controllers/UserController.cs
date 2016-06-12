@@ -23,6 +23,7 @@ namespace Massdrop.Controllers
 		{
 			massdrop = (MassdropShop)Session["massdrop"];
 			ViewData["User"] = massdrop.UserLoggedIn;
+            ViewData["Orders"] = massdrop.OrderRepo.OrderRepo.Collection.ToList().FindAll(x => x.User == massdrop.UserLoggedIn);
 			return View("UserView", "_ProductLayout");
 		}
 		#endregion

@@ -1,21 +1,23 @@
-﻿
+﻿@using Massdrop.Models;
 @{
     ViewBag.Title = "UserView";
     Layout = "~/Views/Shared/_ProductLayout.cshtml";
 }
 
 @{
-    Massdrop.Models.User user = (Massdrop.Models.User)ViewData["User"];
+    User user = (User)ViewData["User"];
+    List<Order> orders = (List<Order>)ViewData["Orders"];
 }
 
 <div class="page-container">
     <div class="container">
         <div class="row row-offcanvas row-offcanvas-left">
             <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-                <h3 style="margin-left: 15px; font-weight: 800;">MY SETTINGS</h3>
+                <h3 style="margin-left: 15px; font-weight: 800;">MY ACCCOUNT</h3>
                 <ul class="nav">
                     <li class="sideText"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-user pull-right"></span>User Info</a></li>
                     <li class="sideText"><a href="#shipping" aria-controls="shipping" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-book pull-right"></span> Shipping Adresses</a></li>
+                    <li class="sideText"><a href="#orderhistory" aria-controls="shipping" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-shopping-cart pull-right"></span>Order History</a></li>
                 </ul>
             </div>
 
@@ -98,7 +100,7 @@
                                 <div class="panel-heading"><h4>Shipping Addresses</h4></div>
                                 <div class="panel-body">
                                     <div class="panel-wrapper adjusted">
-                                        @foreach (Massdrop.Models.Shipping_Address address in user.Shipping_Addresses)
+                                        @foreach (Shipping_Address address in user.Shipping_Addresses)
                                         {
                                             var phoneNumber = (address.PhoneNumber == 0) ? 0000000000 : address.PhoneNumber;
 
@@ -121,6 +123,31 @@
                         <p class="buttongroup">
                             <a class="btn btn-sm btn-primary" style="background: #00aeda; border-color: #00aeda; margin-right: 15px; width: 96px;" href="#newShipping" aria-controls="newShipping" role="tab" data-toggle="tab">ADD</a>
                         </p>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id="orderhistory">
+                        <div role="tabpanel" class="tab-pane active" id="home">
+                            <div class="panel panel-default adjusted top">
+                                <div class="panel-heading"><h4>Order History</h4></div>
+                                <div class="panel-body">
+                                    <div class="wrapper">
+                                        @foreach (Order order in orders)
+                                        {
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading"><h4>@order.Massdrop.Product.Name - @order.Massdrop.Product.Category.ToString()</h4></div>
+                                                <div class="panel-body" style="width: 100%">
+                                                    <div class="wrapper">
+                                                        <img src=@order.Massdrop.Product.ImageUrl style="max-width: 100%">
+                                                        <h4>Price: $@order.Massdrop.Product.Price</h4>
+                                                        <h4>MSRP: $@order.Massdrop.Product.NormalPrice</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div role="tabpanel" class="tab-pane" id="newShipping">
@@ -175,7 +202,7 @@
                                     </form>
                                     <p class="buttongroup">
                                         <a class="btn btn-sm btn-primary" style="background: #00aeda; border-color: #00aeda; margin-right: 15px; width: 96px;" onclick="AddShipping()">SAVE</a>
-                                        <a class="btn btn-sm btn-secondary" style="border: .05px solid #8dd8ec; " border-color #00aeda; margin-right 15px; width 96px;" href="#shipping" aria-controls="shipping" role="tab" data-toggle="tab">CANCEL</a>
+                                        <a class="btn btn-sm btn-secondary" style="border: .05px solid #8dd8ec; border-color: #00aeda; margin-right: 15px; width: 96px;" href="#shipping" aria-controls="shipping" role="tab" data-toggle="tab">CANCEL</a>
                                     </p>
                                 </div>
                             </div>
@@ -186,96 +213,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    function ChangeUser() {
-        var username = $('#ChangeUsernameInput').val();
-        var name = $('#ChangeNameInput').val();
-        var email = $('#ChangeEmailInput').val();
-
-        var oldpassword = $('#ChangePWInputOld').val();
-
-        var newpassword = $('#ChangePWInputNew').val();
-        var newpasswordcheck = $('#ChangePWInputNew').val();
-
-        if (newpassword != newpasswordcheck) {
-            alert("The new passwords don't match!");
-        }
-
-        $.ajax({
-            type: "GET",
-            url: "/User/ChangeUserInfo",
-            data: { userName: username, name: name, email: email, password: newpassword, oldpassword: oldpassword },
-            dataType: "json",
-            success: function (data) {
-                if (data == 1) {
-                    alert('Info changed succesfully!')
-                }
-                else {
-                    alert('The password is incorrect!');
-                }
-            },
-            failure: function (data) {
-            }
-        });
-
-    }
-
-    function RemoveShipping(shippingId) {
-        $.ajax({
-            type: "GET",
-            url: "/User/RemoveShippingAddres",
-            data: { id: shippingId },
-            dataType: "json",
-            success: function (data) {
-                location.reload();
-            },
-            failure: function (data) {
-            }
-        });
-    }
-
-    function AddShipping() {
-        var Country = $('#CountryInput').val();
-        var Name = $('#NameInput').val();
-        var Address = $('#AddressInput').val();
-        var City = $('#CityInput').val();
-        var Postalcode = $('#PostalCodeInput').val();
-        var Phonenumber = $('#PhoneNumberInput').val();
-
-        if (Country == "") {
-            alert('Please fill in a country!');
-            return;
-        }
-        if (Name == "") {
-            alert('Please fill in a name!');
-            return;
-        }
-        if (Address == "") {
-            alert('Please fill in an address!');
-            return;
-        }
-        if (City == "") {
-            alert('Please fill in a city!');
-            return;
-        }
-        if (Postalcode == "") {
-            alert('Please fill in a postalcode!');
-            return;
-        }
-
-        $.ajax({
-            type: "GET",
-            url: "/User/AddShippingAddress",
-            data: { address: Address, city: City, province: City, postalcode: Postalcode, phonenumber: Phonenumber },
-            dataType: "json",
-            success: function (data) {
-                if (data == 1) {
-                    location.reload();
-                }
-            },
-            failure: function (data) {
-            }
-        });
-    }
-</script>

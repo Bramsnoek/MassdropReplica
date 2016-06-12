@@ -55,6 +55,10 @@ namespace Massdrop.Controllers
 				{
 					order.User = user;
 				}
+                foreach(Models.Massdrop massdrop in massdropRepo.MassdropRepo.Collection.Where(x => x.ID == order.Massdrop.ID))
+                {
+                    order.Massdrop = massdrop;
+                }
 			}
 
 			foreach (Models.Massdrop massdrop in massdropRepo.MassdropRepo.Collection.Where(x => x.Discussions != null))
