@@ -172,6 +172,7 @@
     <Content Include="Content\fonts\Lato-Regular.woff" />
     <Content Include="Content\fonts\Lato-Regular.woff2" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="Properties\PublishProfiles\Massdrop.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\home.js" />
     <Content Include="scripts\jquery-1.10.2.js" />

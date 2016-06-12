@@ -7,11 +7,11 @@ using Oracle.ManagedDataAccess.Client;
 
 namespace Massdrop.Models.Database
 {
-	public sealed class OracleDB
+	public class OracleDB
 	{
 		#region Fields
 		//The connection string to the database
-		private static string ConnString = "Data Source=localhost/xe;User Id=SYSTEM;Password=Bramsnoek123!;";
+		private static string ConnString = "Data Source=192.168.19.124/xe;User Id=bram;Password=Passw0rd;";
 		#endregion
 
 		#region Constructor

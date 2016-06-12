@@ -32,17 +32,16 @@
 }
 
 function RemoveShipping(shippingId) {
-    location.reload();
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: "/User/RemoveShippingAddres",
         data: { id: shippingId },
-        dataType: "json",
-        success: function (data) {
+        success: function () {
         },
-        failure: function (data) {
+        failure: function () {
         }
     });
+    location.reload();
 }
 
 function AddShipping() {
